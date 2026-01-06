@@ -1,7 +1,7 @@
 # Milky Python SDK
 
 [![PyPI](https://img.shields.io/pypi/v/milky-python-sdk)](https://pypi.org/project/milky-python-sdk/)
-[![License](https://img.shields.io/github/license/example/milky-python-sdk)](LICENSE)
+[![License](https://img.shields.io/github/license/notnotype/milky-python-sdk)](LICENSE)
 
 Python SDK for the Milky Protocol, designed for building bots and integrations with ease. It supports both synchronous and asynchronous modes and features a decorator-based event system.
 
