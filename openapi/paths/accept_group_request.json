@@ -1,0 +1,12 @@
+{
+  "path": "/api/accept_group_request",
+  "post": {
+    "summary": "同意入群/邀请他人入群请求",
+    "operationId": "accept_group_request",
+    "tags": [
+      "群聊 API"
+    ],
+    "requestSchema": "Api_accept_group_request_input",
+    "responseSchema": "ApiEmptyObject"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "description": "用户 QQ 号",
+      "type": "integer",
+      "minimum": -9007199254740991,
+      "maximum": 9007199254740991
+    }
+  },
+  "required": [
+    "user_id"
+  ],
+  "title": "get_user_profile 请求参数",
+  "description": "获取用户个人信息 请求参数"
+}

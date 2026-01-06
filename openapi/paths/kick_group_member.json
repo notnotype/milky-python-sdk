@@ -1,0 +1,12 @@
+{
+  "path": "/api/kick_group_member",
+  "post": {
+    "summary": "踢出群成员",
+    "operationId": "kick_group_member",
+    "tags": [
+      "群聊 API"
+    ],
+    "requestSchema": "Api_kick_group_member_input",
+    "responseSchema": "ApiEmptyObject"
+  }
+}

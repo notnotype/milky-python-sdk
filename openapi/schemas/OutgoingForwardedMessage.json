@@ -1,0 +1,33 @@
+{
+  "title": "发送转发消息",
+  "description": "发送转发消息",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "description": "发送者 QQ 号",
+      "type": "integer",
+      "minimum": -9007199254740991,
+      "maximum": 9007199254740991
+    },
+    "sender_name": {
+      "description": "发送者名称",
+      "type": "string"
+    },
+    "segments": {
+      "description": "消息段列表",
+      "type": "array",
+      "items": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/OutgoingSegment"
+          }
+        ]
+      }
+    }
+  },
+  "required": [
+    "user_id",
+    "sender_name",
+    "segments"
+  ]
+}

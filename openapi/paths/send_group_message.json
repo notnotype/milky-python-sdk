@@ -1,0 +1,12 @@
+{
+  "path": "/api/send_group_message",
+  "post": {
+    "summary": "发送群聊消息",
+    "operationId": "send_group_message",
+    "tags": [
+      "消息 API"
+    ],
+    "requestSchema": "Api_send_group_message_input",
+    "responseSchema": "Api_send_group_message_output"
+  }
+}

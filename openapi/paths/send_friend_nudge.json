@@ -1,0 +1,12 @@
+{
+  "path": "/api/send_friend_nudge",
+  "post": {
+    "summary": "发送好友戳一戳",
+    "operationId": "send_friend_nudge",
+    "tags": [
+      "好友 API"
+    ],
+    "requestSchema": "Api_send_friend_nudge_input",
+    "responseSchema": "ApiEmptyObject"
+  }
+}

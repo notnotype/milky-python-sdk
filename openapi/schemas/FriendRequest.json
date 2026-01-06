@@ -1,0 +1,66 @@
+{
+  "title": "好友请求实体",
+  "description": "好友请求实体",
+  "type": "object",
+  "properties": {
+    "time": {
+      "description": "请求发起时的 Unix 时间戳（秒）",
+      "type": "integer",
+      "minimum": -9007199254740991,
+      "maximum": 9007199254740991
+    },
+    "initiator_id": {
+      "description": "请求发起者 QQ 号",
+      "type": "integer",
+      "minimum": -9007199254740991,
+      "maximum": 9007199254740991
+    },
+    "initiator_uid": {
+      "description": "请求发起者 UID",
+      "type": "string"
+    },
+    "target_user_id": {
+      "description": "目标用户 QQ 号",
+      "type": "integer",
+      "minimum": -9007199254740991,
+      "maximum": 9007199254740991
+    },
+    "target_user_uid": {
+      "description": "目标用户 UID",
+      "type": "string"
+    },
+    "state": {
+      "description": "请求状态",
+      "type": "string",
+      "enum": [
+        "pending",
+        "accepted",
+        "rejected",
+        "ignored"
+      ]
+    },
+    "comment": {
+      "description": "申请附加信息",
+      "type": "string"
+    },
+    "via": {
+      "description": "申请来源",
+      "type": "string"
+    },
+    "is_filtered": {
+      "description": "请求是否被过滤（发起自风险账户）",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "time",
+    "initiator_id",
+    "initiator_uid",
+    "target_user_id",
+    "target_user_uid",
+    "state",
+    "comment",
+    "via",
+    "is_filtered"
+  ]
+}

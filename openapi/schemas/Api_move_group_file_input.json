@@ -1,0 +1,33 @@
+{
+  "type": "object",
+  "properties": {
+    "group_id": {
+      "description": "群号",
+      "type": "integer",
+      "minimum": -9007199254740991,
+      "maximum": 9007199254740991
+    },
+    "file_id": {
+      "description": "文件 ID",
+      "type": "string"
+    },
+    "parent_folder_id": {
+      "description": "文件所在的文件夹 ID",
+      "default": "/",
+      "nullable": true,
+      "type": "string"
+    },
+    "target_folder_id": {
+      "description": "目标文件夹 ID",
+      "default": "/",
+      "nullable": true,
+      "type": "string"
+    }
+  },
+  "required": [
+    "group_id",
+    "file_id"
+  ],
+  "title": "move_group_file 请求参数",
+  "description": "移动群文件 请求参数"
+}

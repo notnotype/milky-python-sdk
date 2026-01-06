@@ -1,0 +1,23 @@
+{
+  "type": "object",
+  "properties": {
+    "message_seq": {
+      "description": "消息序列号",
+      "type": "integer",
+      "minimum": -9007199254740991,
+      "maximum": 9007199254740991
+    },
+    "time": {
+      "description": "消息发送时间",
+      "type": "integer",
+      "minimum": -9007199254740991,
+      "maximum": 9007199254740991
+    }
+  },
+  "required": [
+    "message_seq",
+    "time"
+  ],
+  "title": "send_group_message 响应数据",
+  "description": "发送群聊消息 响应数据"
+}

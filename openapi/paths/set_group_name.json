@@ -1,0 +1,12 @@
+{
+  "path": "/api/set_group_name",
+  "post": {
+    "summary": "设置群名称",
+    "operationId": "set_group_name",
+    "tags": [
+      "群聊 API"
+    ],
+    "requestSchema": "Api_set_group_name_input",
+    "responseSchema": "ApiEmptyObject"
+  }
+}

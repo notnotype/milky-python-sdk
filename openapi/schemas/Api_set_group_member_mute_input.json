@@ -1,0 +1,31 @@
+{
+  "type": "object",
+  "properties": {
+    "group_id": {
+      "description": "群号",
+      "type": "integer",
+      "minimum": -9007199254740991,
+      "maximum": 9007199254740991
+    },
+    "user_id": {
+      "description": "被设置的 QQ 号",
+      "type": "integer",
+      "minimum": -9007199254740991,
+      "maximum": 9007199254740991
+    },
+    "duration": {
+      "description": "禁言持续时间（秒），设为 `0` 为取消禁言",
+      "default": 0,
+      "nullable": true,
+      "type": "integer",
+      "minimum": -9007199254740991,
+      "maximum": 9007199254740991
+    }
+  },
+  "required": [
+    "group_id",
+    "user_id"
+  ],
+  "title": "set_group_member_mute 请求参数",
+  "description": "设置群成员禁言 请求参数"
+}

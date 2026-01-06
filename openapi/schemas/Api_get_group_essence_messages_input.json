@@ -1,0 +1,30 @@
+{
+  "type": "object",
+  "properties": {
+    "group_id": {
+      "description": "群号",
+      "type": "integer",
+      "minimum": -9007199254740991,
+      "maximum": 9007199254740991
+    },
+    "page_index": {
+      "description": "页码索引，从 0 开始",
+      "type": "integer",
+      "minimum": -2147483648,
+      "maximum": 2147483647
+    },
+    "page_size": {
+      "description": "每页包含的精华消息数量",
+      "type": "integer",
+      "minimum": -2147483648,
+      "maximum": 2147483647
+    }
+  },
+  "required": [
+    "group_id",
+    "page_index",
+    "page_size"
+  ],
+  "title": "get_group_essence_messages 请求参数",
+  "description": "获取群精华消息列表 请求参数"
+}

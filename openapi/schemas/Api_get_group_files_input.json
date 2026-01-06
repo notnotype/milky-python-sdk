@@ -1,0 +1,22 @@
+{
+  "type": "object",
+  "properties": {
+    "group_id": {
+      "description": "群号",
+      "type": "integer",
+      "minimum": -9007199254740991,
+      "maximum": 9007199254740991
+    },
+    "parent_folder_id": {
+      "description": "父文件夹 ID",
+      "default": "/",
+      "nullable": true,
+      "type": "string"
+    }
+  },
+  "required": [
+    "group_id"
+  ],
+  "title": "get_group_files 请求参数",
+  "description": "获取群文件列表 请求参数"
+}

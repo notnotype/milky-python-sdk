@@ -1,0 +1,21 @@
+{
+  "type": "object",
+  "properties": {
+    "limit": {
+      "description": "获取的最大请求数量",
+      "default": 20,
+      "nullable": true,
+      "type": "integer",
+      "minimum": -2147483648,
+      "maximum": 2147483647
+    },
+    "is_filtered": {
+      "description": "`true` 表示只获取被过滤（由风险账号发起）的通知，`false` 表示只获取未被过滤的通知",
+      "default": false,
+      "nullable": true,
+      "type": "boolean"
+    }
+  },
+  "title": "get_friend_requests 请求参数",
+  "description": "获取好友请求列表 请求参数"
+}

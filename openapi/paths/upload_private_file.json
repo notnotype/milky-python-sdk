@@ -1,0 +1,12 @@
+{
+  "path": "/api/upload_private_file",
+  "post": {
+    "summary": "上传私聊文件",
+    "operationId": "upload_private_file",
+    "tags": [
+      "文件 API"
+    ],
+    "requestSchema": "Api_upload_private_file_input",
+    "responseSchema": "Api_upload_private_file_output"
+  }
+}

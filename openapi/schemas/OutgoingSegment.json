@@ -1,0 +1,298 @@
+{
+  "title": "发送消息段",
+  "description": "发送消息段",
+  "oneOf": [
+    {
+      "title": "文本消息段",
+      "description": "文本消息段",
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "text"
+          ]
+        },
+        "data": {
+          "description": "文本消息段",
+          "type": "object",
+          "properties": {
+            "text": {
+              "description": "文本内容",
+              "type": "string"
+            }
+          },
+          "required": [
+            "text"
+          ]
+        }
+      },
+      "required": [
+        "type",
+        "data"
+      ]
+    },
+    {
+      "title": "提及消息段",
+      "description": "提及消息段",
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "mention"
+          ]
+        },
+        "data": {
+          "description": "提及消息段",
+          "type": "object",
+          "properties": {
+            "user_id": {
+              "description": "提及的 QQ 号",
+              "type": "integer",
+              "minimum": -9007199254740991,
+              "maximum": 9007199254740991
+            }
+          },
+          "required": [
+            "user_id"
+          ]
+        }
+      },
+      "required": [
+        "type",
+        "data"
+      ]
+    },
+    {
+      "title": "提及全体消息段",
+      "description": "提及全体消息段",
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "mention_all"
+          ]
+        },
+        "data": {
+          "description": "提及全体消息段",
+          "type": "object",
+          "properties": {}
+        }
+      },
+      "required": [
+        "type",
+        "data"
+      ]
+    },
+    {
+      "title": "表情消息段",
+      "description": "表情消息段",
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "face"
+          ]
+        },
+        "data": {
+          "description": "表情消息段",
+          "type": "object",
+          "properties": {
+            "face_id": {
+              "description": "表情 ID",
+              "type": "string"
+            }
+          },
+          "required": [
+            "face_id"
+          ]
+        }
+      },
+      "required": [
+        "type",
+        "data"
+      ]
+    },
+    {
+      "title": "回复消息段",
+      "description": "回复消息段",
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "reply"
+          ]
+        },
+        "data": {
+          "description": "回复消息段",
+          "type": "object",
+          "properties": {
+            "message_seq": {
+              "description": "被引用的消息序列号",
+              "type": "integer",
+              "minimum": -9007199254740991,
+              "maximum": 9007199254740991
+            }
+          },
+          "required": [
+            "message_seq"
+          ]
+        }
+      },
+      "required": [
+        "type",
+        "data"
+      ]
+    },
+    {
+      "title": "图片消息段",
+      "description": "图片消息段",
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "image"
+          ]
+        },
+        "data": {
+          "description": "图片消息段",
+          "type": "object",
+          "properties": {
+            "uri": {
+              "description": "文件 URI，支持 `file://` `http(s)://` `base64://` 三种格式",
+              "type": "string"
+            },
+            "summary": {
+              "description": "图片预览文本",
+              "nullable": true,
+              "type": "string"
+            },
+            "sub_type": {
+              "description": "图片类型",
+              "type": "string",
+              "enum": [
+                "normal",
+                "sticker"
+              ]
+            }
+          },
+          "required": [
+            "uri",
+            "sub_type"
+          ]
+        }
+      },
+      "required": [
+        "type",
+        "data"
+      ]
+    },
+    {
+      "title": "语音消息段",
+      "description": "语音消息段",
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "record"
+          ]
+        },
+        "data": {
+          "description": "语音消息段",
+          "type": "object",
+          "properties": {
+            "uri": {
+              "description": "文件 URI，支持 `file://` `http(s)://` `base64://` 三种格式",
+              "type": "string"
+            }
+          },
+          "required": [
+            "uri"
+          ]
+        }
+      },
+      "required": [
+        "type",
+        "data"
+      ]
+    },
+    {
+      "title": "视频消息段",
+      "description": "视频消息段",
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "video"
+          ]
+        },
+        "data": {
+          "description": "视频消息段",
+          "type": "object",
+          "properties": {
+            "uri": {
+              "description": "文件 URI，支持 `file://` `http(s)://` `base64://` 三种格式",
+              "type": "string"
+            },
+            "thumb_uri": {
+              "description": "封面图片 URI",
+              "nullable": true,
+              "type": "string"
+            }
+          },
+          "required": [
+            "uri"
+          ]
+        }
+      },
+      "required": [
+        "type",
+        "data"
+      ]
+    },
+    {
+      "title": "合并转发消息段",
+      "description": "合并转发消息段",
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "forward"
+          ]
+        },
+        "data": {
+          "description": "合并转发消息段",
+          "type": "object",
+          "properties": {
+            "messages": {
+              "description": "合并转发消息段",
+              "type": "array",
+              "items": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/OutgoingForwardedMessage"
+                  }
+                ]
+              }
+            }
+          },
+          "required": [
+            "messages"
+          ]
+        }
+      },
+      "required": [
+        "type",
+        "data"
+      ]
+    }
+  ]
+}

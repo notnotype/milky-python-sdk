@@ -1,0 +1,12 @@
+{
+  "path": "/api/recall_group_message",
+  "post": {
+    "summary": "撤回群聊消息",
+    "operationId": "recall_group_message",
+    "tags": [
+      "消息 API"
+    ],
+    "requestSchema": "Api_recall_group_message_input",
+    "responseSchema": "ApiEmptyObject"
+  }
+}

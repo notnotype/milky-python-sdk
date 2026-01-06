@@ -1,0 +1,43 @@
+{
+  "type": "object",
+  "properties": {
+    "notification_seq": {
+      "description": "请求对应的通知序列号",
+      "type": "integer",
+      "minimum": -9007199254740991,
+      "maximum": 9007199254740991
+    },
+    "notification_type": {
+      "description": "请求对应的通知类型",
+      "type": "string",
+      "enum": [
+        "join_request",
+        "invited_join_request"
+      ]
+    },
+    "group_id": {
+      "description": "请求所在的群号",
+      "type": "integer",
+      "minimum": -9007199254740991,
+      "maximum": 9007199254740991
+    },
+    "is_filtered": {
+      "description": "是否是被过滤的请求",
+      "default": false,
+      "nullable": true,
+      "type": "boolean"
+    },
+    "reason": {
+      "description": "拒绝理由",
+      "nullable": true,
+      "type": "string"
+    }
+  },
+  "required": [
+    "notification_seq",
+    "notification_type",
+    "group_id"
+  ],
+  "title": "reject_group_request 请求参数",
+  "description": "拒绝入群/邀请他人入群请求 请求参数"
+}

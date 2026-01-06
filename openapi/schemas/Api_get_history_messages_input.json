@@ -1,0 +1,41 @@
+{
+  "type": "object",
+  "properties": {
+    "message_scene": {
+      "description": "消息场景",
+      "type": "string",
+      "enum": [
+        "friend",
+        "group",
+        "temp"
+      ]
+    },
+    "peer_id": {
+      "description": "好友 QQ 号或群号",
+      "type": "integer",
+      "minimum": -9007199254740991,
+      "maximum": 9007199254740991
+    },
+    "start_message_seq": {
+      "description": "起始消息序列号，由此开始从新到旧查询，不提供则从最新消息开始",
+      "nullable": true,
+      "type": "integer",
+      "minimum": -9007199254740991,
+      "maximum": 9007199254740991
+    },
+    "limit": {
+      "description": "期望获取到的消息数量，最多 30 条",
+      "default": 20,
+      "nullable": true,
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 30
+    }
+  },
+  "required": [
+    "message_scene",
+    "peer_id"
+  ],
+  "title": "get_history_messages 请求参数",
+  "description": "获取历史消息列表 请求参数"
+}

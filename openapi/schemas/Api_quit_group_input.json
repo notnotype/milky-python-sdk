@@ -1,0 +1,16 @@
+{
+  "type": "object",
+  "properties": {
+    "group_id": {
+      "description": "群号",
+      "type": "integer",
+      "minimum": -9007199254740991,
+      "maximum": 9007199254740991
+    }
+  },
+  "required": [
+    "group_id"
+  ],
+  "title": "quit_group 请求参数",
+  "description": "退出群 请求参数"
+}

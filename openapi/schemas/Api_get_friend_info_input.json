@@ -1,0 +1,22 @@
+{
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "description": "好友 QQ 号",
+      "type": "integer",
+      "minimum": -9007199254740991,
+      "maximum": 9007199254740991
+    },
+    "no_cache": {
+      "description": "是否强制不使用缓存",
+      "default": false,
+      "nullable": true,
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "user_id"
+  ],
+  "title": "get_friend_info 请求参数",
+  "description": "获取好友信息 请求参数"
+}

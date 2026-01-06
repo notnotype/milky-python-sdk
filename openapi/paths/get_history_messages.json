@@ -1,0 +1,12 @@
+{
+  "path": "/api/get_history_messages",
+  "post": {
+    "summary": "获取历史消息列表",
+    "operationId": "get_history_messages",
+    "tags": [
+      "消息 API"
+    ],
+    "requestSchema": "Api_get_history_messages_input",
+    "responseSchema": "Api_get_history_messages_output"
+  }
+}

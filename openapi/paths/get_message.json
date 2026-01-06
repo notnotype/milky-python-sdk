@@ -1,0 +1,12 @@
+{
+  "path": "/api/get_message",
+  "post": {
+    "summary": "获取消息",
+    "operationId": "get_message",
+    "tags": [
+      "消息 API"
+    ],
+    "requestSchema": "Api_get_message_input",
+    "responseSchema": "Api_get_message_output"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "type": "object",
+  "properties": {
+    "group_id": {
+      "description": "群号",
+      "type": "integer",
+      "minimum": -9007199254740991,
+      "maximum": 9007199254740991
+    },
+    "no_cache": {
+      "description": "是否强制不使用缓存",
+      "default": false,
+      "nullable": true,
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "group_id"
+  ],
+  "title": "get_group_info 请求参数",
+  "description": "获取群信息 请求参数"
+}

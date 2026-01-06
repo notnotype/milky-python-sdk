@@ -1,0 +1,21 @@
+{
+  "type": "object",
+  "properties": {
+    "messages": {
+      "description": "转发消息内容",
+      "type": "array",
+      "items": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/IncomingForwardedMessage"
+          }
+        ]
+      }
+    }
+  },
+  "required": [
+    "messages"
+  ],
+  "title": "get_forwarded_messages 响应数据",
+  "description": "获取合并转发消息内容 响应数据"
+}

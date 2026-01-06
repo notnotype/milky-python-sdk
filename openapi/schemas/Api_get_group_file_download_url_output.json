@@ -1,0 +1,14 @@
+{
+  "type": "object",
+  "properties": {
+    "download_url": {
+      "description": "文件下载链接",
+      "type": "string"
+    }
+  },
+  "required": [
+    "download_url"
+  ],
+  "title": "get_group_file_download_url 响应数据",
+  "description": "获取群文件下载链接 响应数据"
+}

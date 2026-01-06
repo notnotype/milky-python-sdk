@@ -1,0 +1,210 @@
+{
+  "title": "接收消息",
+  "description": "接收消息",
+  "oneOf": [
+    {
+      "title": "好友消息",
+      "description": "好友消息",
+      "type": "object",
+      "properties": {
+        "message_scene": {
+          "type": "string",
+          "enum": [
+            "friend"
+          ]
+        },
+        "peer_id": {
+          "description": "好友 QQ 号或群号",
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "message_seq": {
+          "description": "消息序列号",
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "sender_id": {
+          "description": "发送者 QQ 号",
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "time": {
+          "description": "消息 Unix 时间戳（秒）",
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "segments": {
+          "description": "消息段列表",
+          "type": "array",
+          "items": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/IncomingSegment"
+              }
+            ]
+          }
+        },
+        "friend": {
+          "description": "好友信息",
+          "allOf": [
+            {
+              "$ref": "#/components/schemas/FriendEntity"
+            }
+          ]
+        }
+      },
+      "required": [
+        "message_scene",
+        "peer_id",
+        "message_seq",
+        "sender_id",
+        "time",
+        "segments",
+        "friend"
+      ]
+    },
+    {
+      "title": "群消息",
+      "description": "群消息",
+      "type": "object",
+      "properties": {
+        "message_scene": {
+          "type": "string",
+          "enum": [
+            "group"
+          ]
+        },
+        "peer_id": {
+          "description": "好友 QQ 号或群号",
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "message_seq": {
+          "description": "消息序列号",
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "sender_id": {
+          "description": "发送者 QQ 号",
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "time": {
+          "description": "消息 Unix 时间戳（秒）",
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "segments": {
+          "description": "消息段列表",
+          "type": "array",
+          "items": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/IncomingSegment"
+              }
+            ]
+          }
+        },
+        "group": {
+          "description": "群信息",
+          "allOf": [
+            {
+              "$ref": "#/components/schemas/GroupEntity"
+            }
+          ]
+        },
+        "group_member": {
+          "description": "群成员信息",
+          "allOf": [
+            {
+              "$ref": "#/components/schemas/GroupMemberEntity"
+            }
+          ]
+        }
+      },
+      "required": [
+        "message_scene",
+        "peer_id",
+        "message_seq",
+        "sender_id",
+        "time",
+        "segments",
+        "group",
+        "group_member"
+      ]
+    },
+    {
+      "title": "临时会话消息",
+      "description": "临时会话消息",
+      "type": "object",
+      "properties": {
+        "message_scene": {
+          "type": "string",
+          "enum": [
+            "temp"
+          ]
+        },
+        "peer_id": {
+          "description": "好友 QQ 号或群号",
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "message_seq": {
+          "description": "消息序列号",
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "sender_id": {
+          "description": "发送者 QQ 号",
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "time": {
+          "description": "消息 Unix 时间戳（秒）",
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "segments": {
+          "description": "消息段列表",
+          "type": "array",
+          "items": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/IncomingSegment"
+              }
+            ]
+          }
+        },
+        "group": {
+          "description": "临时会话发送者的所在的群信息",
+          "nullable": true,
+          "allOf": [
+            {
+              "$ref": "#/components/schemas/GroupEntity"
+            }
+          ]
+        }
+      },
+      "required": [
+        "message_scene",
+        "peer_id",
+        "message_seq",
+        "sender_id",
+        "time",
+        "segments"
+      ]
+    }
+  ]
+}

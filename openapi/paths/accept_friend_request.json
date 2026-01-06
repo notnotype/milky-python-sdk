@@ -1,0 +1,12 @@
+{
+  "path": "/api/accept_friend_request",
+  "post": {
+    "summary": "同意好友请求",
+    "operationId": "accept_friend_request",
+    "tags": [
+      "好友 API"
+    ],
+    "requestSchema": "Api_accept_friend_request_input",
+    "responseSchema": "ApiEmptyObject"
+  }
+}

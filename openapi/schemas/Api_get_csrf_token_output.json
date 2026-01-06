@@ -1,0 +1,14 @@
+{
+  "type": "object",
+  "properties": {
+    "csrf_token": {
+      "description": "CSRF Token",
+      "type": "string"
+    }
+  },
+  "required": [
+    "csrf_token"
+  ],
+  "title": "get_csrf_token 响应数据",
+  "description": "获取 CSRF Token 响应数据"
+}

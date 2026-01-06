@@ -1,0 +1,68 @@
+{
+  "type": "object",
+  "properties": {
+    "nickname": {
+      "description": "昵称",
+      "type": "string"
+    },
+    "qid": {
+      "description": "QID",
+      "type": "string"
+    },
+    "age": {
+      "description": "年龄",
+      "type": "integer",
+      "minimum": -2147483648,
+      "maximum": 2147483647
+    },
+    "sex": {
+      "description": "性别",
+      "type": "string",
+      "enum": [
+        "male",
+        "female",
+        "unknown"
+      ]
+    },
+    "remark": {
+      "description": "备注",
+      "type": "string"
+    },
+    "bio": {
+      "description": "个性签名",
+      "type": "string"
+    },
+    "level": {
+      "description": "QQ 等级",
+      "type": "integer",
+      "minimum": -2147483648,
+      "maximum": 2147483647
+    },
+    "country": {
+      "description": "国家或地区",
+      "type": "string"
+    },
+    "city": {
+      "description": "城市",
+      "type": "string"
+    },
+    "school": {
+      "description": "学校",
+      "type": "string"
+    }
+  },
+  "required": [
+    "nickname",
+    "qid",
+    "age",
+    "sex",
+    "remark",
+    "bio",
+    "level",
+    "country",
+    "city",
+    "school"
+  ],
+  "title": "get_user_profile 响应数据",
+  "description": "获取用户个人信息 响应数据"
+}

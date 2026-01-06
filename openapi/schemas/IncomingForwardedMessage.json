@@ -1,0 +1,38 @@
+{
+  "title": "接收转发消息",
+  "description": "接收转发消息",
+  "type": "object",
+  "properties": {
+    "sender_name": {
+      "description": "发送者名称",
+      "type": "string"
+    },
+    "avatar_url": {
+      "description": "发送者头像 URL",
+      "type": "string"
+    },
+    "time": {
+      "description": "消息 Unix 时间戳（秒）",
+      "type": "integer",
+      "minimum": -9007199254740991,
+      "maximum": 9007199254740991
+    },
+    "segments": {
+      "description": "消息段列表",
+      "type": "array",
+      "items": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/IncomingSegment"
+          }
+        ]
+      }
+    }
+  },
+  "required": [
+    "sender_name",
+    "avatar_url",
+    "time",
+    "segments"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "path": "/api/get_group_announcements",
+  "post": {
+    "summary": "获取群公告列表",
+    "operationId": "get_group_announcements",
+    "tags": [
+      "群聊 API"
+    ],
+    "requestSchema": "Api_get_group_announcements_input",
+    "responseSchema": "Api_get_group_announcements_output"
+  }
+}

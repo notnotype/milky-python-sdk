@@ -1,0 +1,12 @@
+{
+  "path": "/api/delete_group_folder",
+  "post": {
+    "summary": "删除群文件夹",
+    "operationId": "delete_group_folder",
+    "tags": [
+      "文件 API"
+    ],
+    "requestSchema": "Api_delete_group_folder_input",
+    "responseSchema": "ApiEmptyObject"
+  }
+}

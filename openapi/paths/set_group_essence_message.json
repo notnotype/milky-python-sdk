@@ -1,0 +1,12 @@
+{
+  "path": "/api/set_group_essence_message",
+  "post": {
+    "summary": "设置群精华消息",
+    "operationId": "set_group_essence_message",
+    "tags": [
+      "群聊 API"
+    ],
+    "requestSchema": "Api_set_group_essence_message_input",
+    "responseSchema": "ApiEmptyObject"
+  }
+}

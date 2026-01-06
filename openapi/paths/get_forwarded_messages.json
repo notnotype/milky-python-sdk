@@ -1,0 +1,12 @@
+{
+  "path": "/api/get_forwarded_messages",
+  "post": {
+    "summary": "获取合并转发消息内容",
+    "operationId": "get_forwarded_messages",
+    "tags": [
+      "消息 API"
+    ],
+    "requestSchema": "Api_get_forwarded_messages_input",
+    "responseSchema": "Api_get_forwarded_messages_output"
+  }
+}

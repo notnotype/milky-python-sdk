@@ -1,0 +1,1209 @@
+{
+  "title": "事件",
+  "description": "事件",
+  "oneOf": [
+    {
+      "title": "机器人离线事件",
+      "description": "机器人离线事件",
+      "type": "object",
+      "properties": {
+        "event_type": {
+          "type": "string",
+          "enum": [
+            "bot_offline"
+          ]
+        },
+        "time": {
+          "description": "事件 Unix 时间戳（秒）",
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "self_id": {
+          "description": "机器人 QQ 号",
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "data": {
+          "description": "机器人离线事件",
+          "type": "object",
+          "properties": {
+            "reason": {
+              "description": "下线原因",
+              "type": "string"
+            }
+          },
+          "required": [
+            "reason"
+          ]
+        }
+      },
+      "required": [
+        "event_type",
+        "time",
+        "self_id",
+        "data"
+      ]
+    },
+    {
+      "title": "消息接收事件",
+      "description": "消息接收事件",
+      "type": "object",
+      "properties": {
+        "event_type": {
+          "type": "string",
+          "enum": [
+            "message_receive"
+          ]
+        },
+        "time": {
+          "description": "事件 Unix 时间戳（秒）",
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "self_id": {
+          "description": "机器人 QQ 号",
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "data": {
+          "$ref": "#/components/schemas/IncomingMessage"
+        }
+      },
+      "required": [
+        "event_type",
+        "time",
+        "self_id",
+        "data"
+      ]
+    },
+    {
+      "title": "消息撤回事件",
+      "description": "消息撤回事件",
+      "type": "object",
+      "properties": {
+        "event_type": {
+          "type": "string",
+          "enum": [
+            "message_recall"
+          ]
+        },
+        "time": {
+          "description": "事件 Unix 时间戳（秒）",
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "self_id": {
+          "description": "机器人 QQ 号",
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "data": {
+          "description": "消息撤回事件",
+          "type": "object",
+          "properties": {
+            "message_scene": {
+              "description": "消息场景",
+              "type": "string",
+              "enum": [
+                "friend",
+                "group",
+                "temp"
+              ]
+            },
+            "peer_id": {
+              "description": "好友 QQ 号或群号",
+              "type": "integer",
+              "minimum": -9007199254740991,
+              "maximum": 9007199254740991
+            },
+            "message_seq": {
+              "description": "消息序列号",
+              "type": "integer",
+              "minimum": -9007199254740991,
+              "maximum": 9007199254740991
+            },
+            "sender_id": {
+              "description": "被撤回的消息的发送者 QQ 号",
+              "type": "integer",
+              "minimum": -9007199254740991,
+              "maximum": 9007199254740991
+            },
+            "operator_id": {
+              "description": "操作者 QQ 号",
+              "type": "integer",
+              "minimum": -9007199254740991,
+              "maximum": 9007199254740991
+            },
+            "display_suffix": {
+              "description": "撤回提示的后缀文本",
+              "type": "string"
+            }
+          },
+          "required": [
+            "message_scene",
+            "peer_id",
+            "message_seq",
+            "sender_id",
+            "operator_id",
+            "display_suffix"
+          ]
+        }
+      },
+      "required": [
+        "event_type",
+        "time",
+        "self_id",
+        "data"
+      ]
+    },
+    {
+      "title": "好友请求事件",
+      "description": "好友请求事件",
+      "type": "object",
+      "properties": {
+        "event_type": {
+          "type": "string",
+          "enum": [
+            "friend_request"
+          ]
+        },
+        "time": {
+          "description": "事件 Unix 时间戳（秒）",
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "self_id": {
+          "description": "机器人 QQ 号",
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "data": {
+          "description": "好友请求事件",
+          "type": "object",
+          "properties": {
+            "initiator_id": {
+              "description": "申请好友的用户 QQ 号",
+              "type": "integer",
+              "minimum": -9007199254740991,
+              "maximum": 9007199254740991
+            },
+            "initiator_uid": {
+              "description": "用户 UID",
+              "type": "string"
+            },
+            "comment": {
+              "description": "申请附加信息",
+              "type": "string"
+            },
+            "via": {
+              "description": "申请来源",
+              "type": "string"
+            }
+          },
+          "required": [
+            "initiator_id",
+            "initiator_uid",
+            "comment",
+            "via"
+          ]
+        }
+      },
+      "required": [
+        "event_type",
+        "time",
+        "self_id",
+        "data"
+      ]
+    },
+    {
+      "title": "入群请求事件",
+      "description": "入群请求事件",
+      "type": "object",
+      "properties": {
+        "event_type": {
+          "type": "string",
+          "enum": [
+            "group_join_request"
+          ]
+        },
+        "time": {
+          "description": "事件 Unix 时间戳（秒）",
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "self_id": {
+          "description": "机器人 QQ 号",
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "data": {
+          "description": "入群申请事件",
+          "type": "object",
+          "properties": {
+            "group_id": {
+              "description": "群号",
+              "type": "integer",
+              "minimum": -9007199254740991,
+              "maximum": 9007199254740991
+            },
+            "notification_seq": {
+              "description": "请求对应的通知序列号",
+              "type": "integer",
+              "minimum": -9007199254740991,
+              "maximum": 9007199254740991
+            },
+            "is_filtered": {
+              "description": "请求是否被过滤（发起自风险账户）",
+              "type": "boolean"
+            },
+            "initiator_id": {
+              "description": "申请入群的用户 QQ 号",
+              "type": "integer",
+              "minimum": -9007199254740991,
+              "maximum": 9007199254740991
+            },
+            "comment": {
+              "description": "申请附加信息",
+              "type": "string"
+            }
+          },
+          "required": [
+            "group_id",
+            "notification_seq",
+            "is_filtered",
+            "initiator_id",
+            "comment"
+          ]
+        }
+      },
+      "required": [
+        "event_type",
+        "time",
+        "self_id",
+        "data"
+      ]
+    },
+    {
+      "title": "群成员邀请他人入群请求事件",
+      "description": "群成员邀请他人入群请求事件",
+      "type": "object",
+      "properties": {
+        "event_type": {
+          "type": "string",
+          "enum": [
+            "group_invited_join_request"
+          ]
+        },
+        "time": {
+          "description": "事件 Unix 时间戳（秒）",
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "self_id": {
+          "description": "机器人 QQ 号",
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "data": {
+          "description": "群成员邀请他人入群事件",
+          "type": "object",
+          "properties": {
+            "group_id": {
+              "description": "群号",
+              "type": "integer",
+              "minimum": -9007199254740991,
+              "maximum": 9007199254740991
+            },
+            "notification_seq": {
+              "description": "请求对应的通知序列号",
+              "type": "integer",
+              "minimum": -9007199254740991,
+              "maximum": 9007199254740991
+            },
+            "initiator_id": {
+              "description": "邀请者 QQ 号",
+              "type": "integer",
+              "minimum": -9007199254740991,
+              "maximum": 9007199254740991
+            },
+            "target_user_id": {
+              "description": "被邀请者 QQ 号",
+              "type": "integer",
+              "minimum": -9007199254740991,
+              "maximum": 9007199254740991
+            }
+          },
+          "required": [
+            "group_id",
+            "notification_seq",
+            "initiator_id",
+            "target_user_id"
+          ]
+        }
+      },
+      "required": [
+        "event_type",
+        "time",
+        "self_id",
+        "data"
+      ]
+    },
+    {
+      "title": "他人邀请自身入群事件",
+      "description": "他人邀请自身入群事件",
+      "type": "object",
+      "properties": {
+        "event_type": {
+          "type": "string",
+          "enum": [
+            "group_invitation"
+          ]
+        },
+        "time": {
+          "description": "事件 Unix 时间戳（秒）",
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "self_id": {
+          "description": "机器人 QQ 号",
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "data": {
+          "description": "他人邀请自身入群事件",
+          "type": "object",
+          "properties": {
+            "group_id": {
+              "description": "群号",
+              "type": "integer",
+              "minimum": -9007199254740991,
+              "maximum": 9007199254740991
+            },
+            "invitation_seq": {
+              "description": "邀请序列号",
+              "type": "integer",
+              "minimum": -9007199254740991,
+              "maximum": 9007199254740991
+            },
+            "initiator_id": {
+              "description": "邀请者 QQ 号",
+              "type": "integer",
+              "minimum": -9007199254740991,
+              "maximum": 9007199254740991
+            }
+          },
+          "required": [
+            "group_id",
+            "invitation_seq",
+            "initiator_id"
+          ]
+        }
+      },
+      "required": [
+        "event_type",
+        "time",
+        "self_id",
+        "data"
+      ]
+    },
+    {
+      "title": "好友戳一戳事件",
+      "description": "好友戳一戳事件",
+      "type": "object",
+      "properties": {
+        "event_type": {
+          "type": "string",
+          "enum": [
+            "friend_nudge"
+          ]
+        },
+        "time": {
+          "description": "事件 Unix 时间戳（秒）",
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "self_id": {
+          "description": "机器人 QQ 号",
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "data": {
+          "description": "好友戳一戳事件",
+          "type": "object",
+          "properties": {
+            "user_id": {
+              "description": "好友 QQ 号",
+              "type": "integer",
+              "minimum": -9007199254740991,
+              "maximum": 9007199254740991
+            },
+            "is_self_send": {
+              "description": "是否是自己发送的戳一戳",
+              "type": "boolean"
+            },
+            "is_self_receive": {
+              "description": "是否是自己接收的戳一戳",
+              "type": "boolean"
+            },
+            "display_action": {
+              "description": "戳一戳提示的动作文本",
+              "type": "string"
+            },
+            "display_suffix": {
+              "description": "戳一戳提示的后缀文本",
+              "type": "string"
+            },
+            "display_action_img_url": {
+              "description": "戳一戳提示的动作图片 URL，用于取代动作提示文本",
+              "type": "string"
+            }
+          },
+          "required": [
+            "user_id",
+            "is_self_send",
+            "is_self_receive",
+            "display_action",
+            "display_suffix",
+            "display_action_img_url"
+          ]
+        }
+      },
+      "required": [
+        "event_type",
+        "time",
+        "self_id",
+        "data"
+      ]
+    },
+    {
+      "title": "好友文件上传事件",
+      "description": "好友文件上传事件",
+      "type": "object",
+      "properties": {
+        "event_type": {
+          "type": "string",
+          "enum": [
+            "friend_file_upload"
+          ]
+        },
+        "time": {
+          "description": "事件 Unix 时间戳（秒）",
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "self_id": {
+          "description": "机器人 QQ 号",
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "data": {
+          "description": "好友文件上传事件",
+          "type": "object",
+          "properties": {
+            "user_id": {
+              "description": "好友 QQ 号",
+              "type": "integer",
+              "minimum": -9007199254740991,
+              "maximum": 9007199254740991
+            },
+            "file_id": {
+              "description": "文件 ID",
+              "type": "string"
+            },
+            "file_name": {
+              "description": "文件名称",
+              "type": "string"
+            },
+            "file_size": {
+              "description": "文件大小（字节）",
+              "type": "integer",
+              "minimum": -9007199254740991,
+              "maximum": 9007199254740991
+            },
+            "file_hash": {
+              "description": "文件的 TriSHA1 哈希值",
+              "type": "string"
+            },
+            "is_self": {
+              "description": "是否是自己发送的文件",
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "user_id",
+            "file_id",
+            "file_name",
+            "file_size",
+            "file_hash",
+            "is_self"
+          ]
+        }
+      },
+      "required": [
+        "event_type",
+        "time",
+        "self_id",
+        "data"
+      ]
+    },
+    {
+      "title": "群管理员变更事件",
+      "description": "群管理员变更事件",
+      "type": "object",
+      "properties": {
+        "event_type": {
+          "type": "string",
+          "enum": [
+            "group_admin_change"
+          ]
+        },
+        "time": {
+          "description": "事件 Unix 时间戳（秒）",
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "self_id": {
+          "description": "机器人 QQ 号",
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "data": {
+          "description": "群管理员变更事件",
+          "type": "object",
+          "properties": {
+            "group_id": {
+              "description": "群号",
+              "type": "integer",
+              "minimum": -9007199254740991,
+              "maximum": 9007199254740991
+            },
+            "user_id": {
+              "description": "发生变更的用户 QQ 号",
+              "type": "integer",
+              "minimum": -9007199254740991,
+              "maximum": 9007199254740991
+            },
+            "is_set": {
+              "description": "是否被设置为管理员，`false` 表示被取消管理员",
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "group_id",
+            "user_id",
+            "is_set"
+          ]
+        }
+      },
+      "required": [
+        "event_type",
+        "time",
+        "self_id",
+        "data"
+      ]
+    },
+    {
+      "title": "群精华消息变更事件",
+      "description": "群精华消息变更事件",
+      "type": "object",
+      "properties": {
+        "event_type": {
+          "type": "string",
+          "enum": [
+            "group_essence_message_change"
+          ]
+        },
+        "time": {
+          "description": "事件 Unix 时间戳（秒）",
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "self_id": {
+          "description": "机器人 QQ 号",
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "data": {
+          "description": "群精华消息变更事件",
+          "type": "object",
+          "properties": {
+            "group_id": {
+              "description": "群号",
+              "type": "integer",
+              "minimum": -9007199254740991,
+              "maximum": 9007199254740991
+            },
+            "message_seq": {
+              "description": "发生变更的消息序列号",
+              "type": "integer",
+              "minimum": -9007199254740991,
+              "maximum": 9007199254740991
+            },
+            "is_set": {
+              "description": "是否被设置为精华，`false` 表示被取消精华",
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "group_id",
+            "message_seq",
+            "is_set"
+          ]
+        }
+      },
+      "required": [
+        "event_type",
+        "time",
+        "self_id",
+        "data"
+      ]
+    },
+    {
+      "title": "群成员增加事件",
+      "description": "群成员增加事件",
+      "type": "object",
+      "properties": {
+        "event_type": {
+          "type": "string",
+          "enum": [
+            "group_member_increase"
+          ]
+        },
+        "time": {
+          "description": "事件 Unix 时间戳（秒）",
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "self_id": {
+          "description": "机器人 QQ 号",
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "data": {
+          "description": "群成员增加事件",
+          "type": "object",
+          "properties": {
+            "group_id": {
+              "description": "群号",
+              "type": "integer",
+              "minimum": -9007199254740991,
+              "maximum": 9007199254740991
+            },
+            "user_id": {
+              "description": "发生变更的用户 QQ 号",
+              "type": "integer",
+              "minimum": -9007199254740991,
+              "maximum": 9007199254740991
+            },
+            "operator_id": {
+              "description": "管理员 QQ 号，如果是管理员同意入群",
+              "nullable": true,
+              "type": "integer",
+              "minimum": -9007199254740991,
+              "maximum": 9007199254740991
+            },
+            "invitor_id": {
+              "description": "邀请者 QQ 号，如果是邀请入群",
+              "nullable": true,
+              "type": "integer",
+              "minimum": -9007199254740991,
+              "maximum": 9007199254740991
+            }
+          },
+          "required": [
+            "group_id",
+            "user_id"
+          ]
+        }
+      },
+      "required": [
+        "event_type",
+        "time",
+        "self_id",
+        "data"
+      ]
+    },
+    {
+      "title": "群成员减少事件",
+      "description": "群成员减少事件",
+      "type": "object",
+      "properties": {
+        "event_type": {
+          "type": "string",
+          "enum": [
+            "group_member_decrease"
+          ]
+        },
+        "time": {
+          "description": "事件 Unix 时间戳（秒）",
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "self_id": {
+          "description": "机器人 QQ 号",
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "data": {
+          "description": "群成员减少事件",
+          "type": "object",
+          "properties": {
+            "group_id": {
+              "description": "群号",
+              "type": "integer",
+              "minimum": -9007199254740991,
+              "maximum": 9007199254740991
+            },
+            "user_id": {
+              "description": "发生变更的用户 QQ 号",
+              "type": "integer",
+              "minimum": -9007199254740991,
+              "maximum": 9007199254740991
+            },
+            "operator_id": {
+              "description": "管理员 QQ 号，如果是管理员踢出",
+              "nullable": true,
+              "type": "integer",
+              "minimum": -9007199254740991,
+              "maximum": 9007199254740991
+            }
+          },
+          "required": [
+            "group_id",
+            "user_id"
+          ]
+        }
+      },
+      "required": [
+        "event_type",
+        "time",
+        "self_id",
+        "data"
+      ]
+    },
+    {
+      "title": "群名称变更事件",
+      "description": "群名称变更事件",
+      "type": "object",
+      "properties": {
+        "event_type": {
+          "type": "string",
+          "enum": [
+            "group_name_change"
+          ]
+        },
+        "time": {
+          "description": "事件 Unix 时间戳（秒）",
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "self_id": {
+          "description": "机器人 QQ 号",
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "data": {
+          "description": "群名称变更事件",
+          "type": "object",
+          "properties": {
+            "group_id": {
+              "description": "群号",
+              "type": "integer",
+              "minimum": -9007199254740991,
+              "maximum": 9007199254740991
+            },
+            "new_group_name": {
+              "description": "新的群名称",
+              "type": "string"
+            },
+            "operator_id": {
+              "description": "操作者 QQ 号",
+              "type": "integer",
+              "minimum": -9007199254740991,
+              "maximum": 9007199254740991
+            }
+          },
+          "required": [
+            "group_id",
+            "new_group_name",
+            "operator_id"
+          ]
+        }
+      },
+      "required": [
+        "event_type",
+        "time",
+        "self_id",
+        "data"
+      ]
+    },
+    {
+      "title": "群消息表情回应事件",
+      "description": "群消息表情回应事件",
+      "type": "object",
+      "properties": {
+        "event_type": {
+          "type": "string",
+          "enum": [
+            "group_message_reaction"
+          ]
+        },
+        "time": {
+          "description": "事件 Unix 时间戳（秒）",
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "self_id": {
+          "description": "机器人 QQ 号",
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "data": {
+          "description": "群消息回应事件",
+          "type": "object",
+          "properties": {
+            "group_id": {
+              "description": "群号",
+              "type": "integer",
+              "minimum": -9007199254740991,
+              "maximum": 9007199254740991
+            },
+            "user_id": {
+              "description": "发送回应者 QQ 号",
+              "type": "integer",
+              "minimum": -9007199254740991,
+              "maximum": 9007199254740991
+            },
+            "message_seq": {
+              "description": "消息序列号",
+              "type": "integer",
+              "minimum": -9007199254740991,
+              "maximum": 9007199254740991
+            },
+            "face_id": {
+              "description": "表情 ID",
+              "type": "string"
+            },
+            "is_add": {
+              "description": "是否为添加，`false` 表示取消回应",
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "group_id",
+            "user_id",
+            "message_seq",
+            "face_id",
+            "is_add"
+          ]
+        }
+      },
+      "required": [
+        "event_type",
+        "time",
+        "self_id",
+        "data"
+      ]
+    },
+    {
+      "title": "群禁言事件",
+      "description": "群禁言事件",
+      "type": "object",
+      "properties": {
+        "event_type": {
+          "type": "string",
+          "enum": [
+            "group_mute"
+          ]
+        },
+        "time": {
+          "description": "事件 Unix 时间戳（秒）",
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "self_id": {
+          "description": "机器人 QQ 号",
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "data": {
+          "description": "群禁言事件",
+          "type": "object",
+          "properties": {
+            "group_id": {
+              "description": "群号",
+              "type": "integer",
+              "minimum": -9007199254740991,
+              "maximum": 9007199254740991
+            },
+            "user_id": {
+              "description": "发生变更的用户 QQ 号",
+              "type": "integer",
+              "minimum": -9007199254740991,
+              "maximum": 9007199254740991
+            },
+            "operator_id": {
+              "description": "操作者 QQ 号",
+              "type": "integer",
+              "minimum": -9007199254740991,
+              "maximum": 9007199254740991
+            },
+            "duration": {
+              "description": "禁言时长（秒），为 0 表示取消禁言",
+              "type": "integer",
+              "minimum": -2147483648,
+              "maximum": 2147483647
+            }
+          },
+          "required": [
+            "group_id",
+            "user_id",
+            "operator_id",
+            "duration"
+          ]
+        }
+      },
+      "required": [
+        "event_type",
+        "time",
+        "self_id",
+        "data"
+      ]
+    },
+    {
+      "title": "群全体禁言事件",
+      "description": "群全体禁言事件",
+      "type": "object",
+      "properties": {
+        "event_type": {
+          "type": "string",
+          "enum": [
+            "group_whole_mute"
+          ]
+        },
+        "time": {
+          "description": "事件 Unix 时间戳（秒）",
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "self_id": {
+          "description": "机器人 QQ 号",
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "data": {
+          "description": "群全体禁言事件",
+          "type": "object",
+          "properties": {
+            "group_id": {
+              "description": "群号",
+              "type": "integer",
+              "minimum": -9007199254740991,
+              "maximum": 9007199254740991
+            },
+            "operator_id": {
+              "description": "操作者 QQ 号",
+              "type": "integer",
+              "minimum": -9007199254740991,
+              "maximum": 9007199254740991
+            },
+            "is_mute": {
+              "description": "是否全员禁言，`false` 表示取消全员禁言",
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "group_id",
+            "operator_id",
+            "is_mute"
+          ]
+        }
+      },
+      "required": [
+        "event_type",
+        "time",
+        "self_id",
+        "data"
+      ]
+    },
+    {
+      "title": "群戳一戳事件",
+      "description": "群戳一戳事件",
+      "type": "object",
+      "properties": {
+        "event_type": {
+          "type": "string",
+          "enum": [
+            "group_nudge"
+          ]
+        },
+        "time": {
+          "description": "事件 Unix 时间戳（秒）",
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "self_id": {
+          "description": "机器人 QQ 号",
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "data": {
+          "description": "群戳一戳事件",
+          "type": "object",
+          "properties": {
+            "group_id": {
+              "description": "群号",
+              "type": "integer",
+              "minimum": -9007199254740991,
+              "maximum": 9007199254740991
+            },
+            "sender_id": {
+              "description": "发送者 QQ 号",
+              "type": "integer",
+              "minimum": -9007199254740991,
+              "maximum": 9007199254740991
+            },
+            "receiver_id": {
+              "description": "接收者 QQ 号",
+              "type": "integer",
+              "minimum": -9007199254740991,
+              "maximum": 9007199254740991
+            },
+            "display_action": {
+              "description": "戳一戳提示的动作文本",
+              "type": "string"
+            },
+            "display_suffix": {
+              "description": "戳一戳提示的后缀文本",
+              "type": "string"
+            },
+            "display_action_img_url": {
+              "description": "戳一戳提示的动作图片 URL，用于取代动作提示文本",
+              "type": "string"
+            }
+          },
+          "required": [
+            "group_id",
+            "sender_id",
+            "receiver_id",
+            "display_action",
+            "display_suffix",
+            "display_action_img_url"
+          ]
+        }
+      },
+      "required": [
+        "event_type",
+        "time",
+        "self_id",
+        "data"
+      ]
+    },
+    {
+      "title": "群文件上传事件",
+      "description": "群文件上传事件",
+      "type": "object",
+      "properties": {
+        "event_type": {
+          "type": "string",
+          "enum": [
+            "group_file_upload"
+          ]
+        },
+        "time": {
+          "description": "事件 Unix 时间戳（秒）",
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "self_id": {
+          "description": "机器人 QQ 号",
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "data": {
+          "description": "群文件上传事件",
+          "type": "object",
+          "properties": {
+            "group_id": {
+              "description": "群号",
+              "type": "integer",
+              "minimum": -9007199254740991,
+              "maximum": 9007199254740991
+            },
+            "user_id": {
+              "description": "发送者 QQ 号",
+              "type": "integer",
+              "minimum": -9007199254740991,
+              "maximum": 9007199254740991
+            },
+            "file_id": {
+              "description": "文件 ID",
+              "type": "string"
+            },
+            "file_name": {
+              "description": "文件名称",
+              "type": "string"
+            },
+            "file_size": {
+              "description": "文件大小（字节）",
+              "type": "integer",
+              "minimum": -9007199254740991,
+              "maximum": 9007199254740991
+            }
+          },
+          "required": [
+            "group_id",
+            "user_id",
+            "file_id",
+            "file_name",
+            "file_size"
+          ]
+        }
+      },
+      "required": [
+        "event_type",
+        "time",
+        "self_id",
+        "data"
+      ]
+    }
+  ]
+}

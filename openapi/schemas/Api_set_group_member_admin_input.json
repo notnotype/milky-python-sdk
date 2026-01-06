@@ -1,0 +1,29 @@
+{
+  "type": "object",
+  "properties": {
+    "group_id": {
+      "description": "群号",
+      "type": "integer",
+      "minimum": -9007199254740991,
+      "maximum": 9007199254740991
+    },
+    "user_id": {
+      "description": "被设置的 QQ 号",
+      "type": "integer",
+      "minimum": -9007199254740991,
+      "maximum": 9007199254740991
+    },
+    "is_set": {
+      "description": "是否设置为管理员，`false` 表示取消管理员",
+      "default": true,
+      "nullable": true,
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "group_id",
+    "user_id"
+  ],
+  "title": "set_group_member_admin 请求参数",
+  "description": "设置群管理员 请求参数"
+}

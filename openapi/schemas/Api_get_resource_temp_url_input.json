@@ -1,0 +1,14 @@
+{
+  "type": "object",
+  "properties": {
+    "resource_id": {
+      "description": "资源 ID",
+      "type": "string"
+    }
+  },
+  "required": [
+    "resource_id"
+  ],
+  "title": "get_resource_temp_url 请求参数",
+  "description": "获取临时资源链接 请求参数"
+}

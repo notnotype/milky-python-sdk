@@ -1,0 +1,21 @@
+{
+  "type": "object",
+  "properties": {
+    "group_id": {
+      "description": "群号",
+      "type": "integer",
+      "minimum": -9007199254740991,
+      "maximum": 9007199254740991
+    },
+    "folder_name": {
+      "description": "文件夹名称",
+      "type": "string"
+    }
+  },
+  "required": [
+    "group_id",
+    "folder_name"
+  ],
+  "title": "create_group_folder 请求参数",
+  "description": "创建群文件夹 请求参数"
+}

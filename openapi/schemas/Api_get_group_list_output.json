@@ -1,0 +1,21 @@
+{
+  "type": "object",
+  "properties": {
+    "groups": {
+      "description": "群列表",
+      "type": "array",
+      "items": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/GroupEntity"
+          }
+        ]
+      }
+    }
+  },
+  "required": [
+    "groups"
+  ],
+  "title": "get_group_list 响应数据",
+  "description": "获取群列表 响应数据"
+}

@@ -1,0 +1,86 @@
+{
+  "title": "群成员实体",
+  "description": "群成员实体",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "description": "用户 QQ 号",
+      "type": "integer",
+      "minimum": -9007199254740991,
+      "maximum": 9007199254740991
+    },
+    "nickname": {
+      "description": "用户昵称",
+      "type": "string"
+    },
+    "sex": {
+      "description": "用户性别",
+      "type": "string",
+      "enum": [
+        "male",
+        "female",
+        "unknown"
+      ]
+    },
+    "group_id": {
+      "description": "群号",
+      "type": "integer",
+      "minimum": -9007199254740991,
+      "maximum": 9007199254740991
+    },
+    "card": {
+      "description": "成员备注",
+      "type": "string"
+    },
+    "title": {
+      "description": "专属头衔",
+      "type": "string"
+    },
+    "level": {
+      "description": "群等级，注意和 QQ 等级区分",
+      "type": "integer",
+      "minimum": -2147483648,
+      "maximum": 2147483647
+    },
+    "role": {
+      "description": "权限等级",
+      "type": "string",
+      "enum": [
+        "owner",
+        "admin",
+        "member"
+      ]
+    },
+    "join_time": {
+      "description": "入群时间，Unix 时间戳（秒）",
+      "type": "integer",
+      "minimum": -9007199254740991,
+      "maximum": 9007199254740991
+    },
+    "last_sent_time": {
+      "description": "最后发言时间，Unix 时间戳（秒）",
+      "type": "integer",
+      "minimum": -9007199254740991,
+      "maximum": 9007199254740991
+    },
+    "shut_up_end_time": {
+      "description": "禁言结束时间，Unix 时间戳（秒）",
+      "nullable": true,
+      "type": "integer",
+      "minimum": -9007199254740991,
+      "maximum": 9007199254740991
+    }
+  },
+  "required": [
+    "user_id",
+    "nickname",
+    "sex",
+    "group_id",
+    "card",
+    "title",
+    "level",
+    "role",
+    "join_time",
+    "last_sent_time"
+  ]
+}

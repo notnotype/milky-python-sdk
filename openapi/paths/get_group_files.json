@@ -1,0 +1,12 @@
+{
+  "path": "/api/get_group_files",
+  "post": {
+    "summary": "获取群文件列表",
+    "operationId": "get_group_files",
+    "tags": [
+      "文件 API"
+    ],
+    "requestSchema": "Api_get_group_files_input",
+    "responseSchema": "Api_get_group_files_output"
+  }
+}

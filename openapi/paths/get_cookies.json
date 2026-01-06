@@ -1,0 +1,12 @@
+{
+  "path": "/api/get_cookies",
+  "post": {
+    "summary": "获取 Cookies",
+    "operationId": "get_cookies",
+    "tags": [
+      "系统 API"
+    ],
+    "requestSchema": "Api_get_cookies_input",
+    "responseSchema": "Api_get_cookies_output"
+  }
+}

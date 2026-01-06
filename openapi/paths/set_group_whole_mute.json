@@ -1,0 +1,12 @@
+{
+  "path": "/api/set_group_whole_mute",
+  "post": {
+    "summary": "设置群全员禁言",
+    "operationId": "set_group_whole_mute",
+    "tags": [
+      "群聊 API"
+    ],
+    "requestSchema": "Api_set_group_whole_mute_input",
+    "responseSchema": "ApiEmptyObject"
+  }
+}

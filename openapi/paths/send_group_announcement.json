@@ -1,0 +1,12 @@
+{
+  "path": "/api/send_group_announcement",
+  "post": {
+    "summary": "发送群公告",
+    "operationId": "send_group_announcement",
+    "tags": [
+      "群聊 API"
+    ],
+    "requestSchema": "Api_send_group_announcement_input",
+    "responseSchema": "ApiEmptyObject"
+  }
+}

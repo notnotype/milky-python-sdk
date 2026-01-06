@@ -1,0 +1,6 @@
+{
+  "type": "object",
+  "properties": {},
+  "title": "get_csrf_token 请求参数",
+  "description": "获取 CSRF Token 请求参数"
+}

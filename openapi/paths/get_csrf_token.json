@@ -1,0 +1,12 @@
+{
+  "path": "/api/get_csrf_token",
+  "post": {
+    "summary": "获取 CSRF Token",
+    "operationId": "get_csrf_token",
+    "tags": [
+      "系统 API"
+    ],
+    "requestSchema": "Api_get_csrf_token_input",
+    "responseSchema": "Api_get_csrf_token_output"
+  }
+}

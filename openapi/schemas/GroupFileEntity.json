@@ -1,0 +1,66 @@
+{
+  "title": "群文件实体",
+  "description": "群文件实体",
+  "type": "object",
+  "properties": {
+    "group_id": {
+      "description": "群号",
+      "type": "integer",
+      "minimum": -9007199254740991,
+      "maximum": 9007199254740991
+    },
+    "file_id": {
+      "description": "文件 ID",
+      "type": "string"
+    },
+    "file_name": {
+      "description": "文件名称",
+      "type": "string"
+    },
+    "parent_folder_id": {
+      "description": "父文件夹 ID",
+      "type": "string"
+    },
+    "file_size": {
+      "description": "文件大小（字节）",
+      "type": "integer",
+      "minimum": -9007199254740991,
+      "maximum": 9007199254740991
+    },
+    "uploaded_time": {
+      "description": "上传时的 Unix 时间戳（秒）",
+      "type": "integer",
+      "minimum": -9007199254740991,
+      "maximum": 9007199254740991
+    },
+    "expire_time": {
+      "description": "过期时的 Unix 时间戳（秒）",
+      "nullable": true,
+      "type": "integer",
+      "minimum": -9007199254740991,
+      "maximum": 9007199254740991
+    },
+    "uploader_id": {
+      "description": "上传者 QQ 号",
+      "type": "integer",
+      "minimum": -9007199254740991,
+      "maximum": 9007199254740991
+    },
+    "downloaded_times": {
+      "description": "下载次数",
+      "type": "integer",
+      "minimum": -2147483648,
+      "maximum": 2147483647
+    }
+  },
+  "required": [
+    "group_id",
+    "file_id",
+    "file_name",
+    "parent_folder_id",
+    "file_size",
+    "uploaded_time",
+    "uploader_id",
+    "downloaded_times"
+  ]
+}

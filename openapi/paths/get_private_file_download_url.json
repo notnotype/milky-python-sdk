@@ -1,0 +1,12 @@
+{
+  "path": "/api/get_private_file_download_url",
+  "post": {
+    "summary": "获取私聊文件下载链接",
+    "operationId": "get_private_file_download_url",
+    "tags": [
+      "文件 API"
+    ],
+    "requestSchema": "Api_get_private_file_download_url_input",
+    "responseSchema": "Api_get_private_file_download_url_output"
+  }
+}

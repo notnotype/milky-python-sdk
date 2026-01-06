@@ -1,0 +1,6 @@
+{
+  "type": "object",
+  "properties": {},
+  "title": "get_login_info 请求参数",
+  "description": "获取登录信息 请求参数"
+}

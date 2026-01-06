@@ -1,0 +1,12 @@
+{
+  "path": "/api/get_friend_requests",
+  "post": {
+    "summary": "获取好友请求列表",
+    "operationId": "get_friend_requests",
+    "tags": [
+      "好友 API"
+    ],
+    "requestSchema": "Api_get_friend_requests_input",
+    "responseSchema": "Api_get_friend_requests_output"
+  }
+}

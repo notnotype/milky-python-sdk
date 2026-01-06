@@ -1,0 +1,21 @@
+{
+  "title": "好友分组实体",
+  "description": "好友分组实体",
+  "type": "object",
+  "properties": {
+    "category_id": {
+      "description": "好友分组 ID",
+      "type": "integer",
+      "minimum": -2147483648,
+      "maximum": 2147483647
+    },
+    "category_name": {
+      "description": "好友分组名称",
+      "type": "string"
+    }
+  },
+  "required": [
+    "category_id",
+    "category_name"
+  ]
+}

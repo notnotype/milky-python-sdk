@@ -1,0 +1,14 @@
+{
+  "type": "object",
+  "properties": {
+    "file_id": {
+      "description": "文件 ID",
+      "type": "string"
+    }
+  },
+  "required": [
+    "file_id"
+  ],
+  "title": "upload_group_file 响应数据",
+  "description": "上传群文件 响应数据"
+}

@@ -1,0 +1,26 @@
+{
+  "type": "object",
+  "required": [
+    "status",
+    "retcode"
+  ],
+  "properties": {
+    "status": {
+      "type": "string",
+      "enum": [
+        "ok",
+        "failed"
+      ]
+    },
+    "retcode": {
+      "type": "integer",
+      "description": "业务状态码，0 表示成功"
+    },
+    "data": {},
+    "message": {
+      "type": "string",
+      "nullable": true,
+      "description": "错误消息，仅失败时返回"
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "path": "/api/send_group_message_reaction",
+  "post": {
+    "summary": "发送群消息表情回应",
+    "operationId": "send_group_message_reaction",
+    "tags": [
+      "群聊 API"
+    ],
+    "requestSchema": "Api_send_group_message_reaction_input",
+    "responseSchema": "ApiEmptyObject"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "path": "/api/get_group_list",
+  "post": {
+    "summary": "获取群列表",
+    "operationId": "get_group_list",
+    "tags": [
+      "系统 API"
+    ],
+    "requestSchema": "Api_get_group_list_input",
+    "responseSchema": "Api_get_group_list_output"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "type": "object",
+  "properties": {
+    "messages": {
+      "description": "精华消息列表",
+      "type": "array",
+      "items": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/GroupEssenceMessage"
+          }
+        ]
+      }
+    },
+    "is_end": {
+      "description": "是否已到最后一页",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "messages",
+    "is_end"
+  ],
+  "title": "get_group_essence_messages 响应数据",
+  "description": "获取群精华消息列表 响应数据"
+}

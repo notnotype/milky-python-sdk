@@ -1,0 +1,21 @@
+{
+  "type": "object",
+  "properties": {
+    "group_id": {
+      "description": "群号",
+      "type": "integer",
+      "minimum": -9007199254740991,
+      "maximum": 9007199254740991
+    },
+    "new_group_name": {
+      "description": "新群名称",
+      "type": "string"
+    }
+  },
+  "required": [
+    "group_id",
+    "new_group_name"
+  ],
+  "title": "set_group_name 请求参数",
+  "description": "设置群名称 请求参数"
+}

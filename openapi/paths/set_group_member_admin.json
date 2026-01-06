@@ -1,0 +1,12 @@
+{
+  "path": "/api/set_group_member_admin",
+  "post": {
+    "summary": "设置群管理员",
+    "operationId": "set_group_member_admin",
+    "tags": [
+      "群聊 API"
+    ],
+    "requestSchema": "Api_set_group_member_admin_input",
+    "responseSchema": "ApiEmptyObject"
+  }
+}
