@@ -1,0 +1,45 @@
+{
+  "title": "群公告实体",
+  "description": "群公告实体",
+  "type": "object",
+  "properties": {
+    "group_id": {
+      "description": "群号",
+      "type": "integer",
+      "minimum": -9007199254740991,
+      "maximum": 9007199254740991
+    },
+    "announcement_id": {
+      "description": "公告 ID",
+      "type": "string"
+    },
+    "user_id": {
+      "description": "发送者 QQ 号",
+      "type": "integer",
+      "minimum": -9007199254740991,
+      "maximum": 9007199254740991
+    },
+    "time": {
+      "description": "Unix 时间戳（秒）",
+      "type": "integer",
+      "minimum": -9007199254740991,
+      "maximum": 9007199254740991
+    },
+    "content": {
+      "description": "公告内容",
+      "type": "string"
+    },
+    "image_url": {
+      "description": "公告图片 URL",
+      "nullable": true,
+      "type": "string"
+    }
+  },
+  "required": [
+    "group_id",
+    "announcement_id",
+    "user_id",
+    "time",
+    "content"
+  ]
+}

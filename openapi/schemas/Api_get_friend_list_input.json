@@ -1,0 +1,13 @@
+{
+  "type": "object",
+  "properties": {
+    "no_cache": {
+      "description": "是否强制不使用缓存",
+      "default": false,
+      "nullable": true,
+      "type": "boolean"
+    }
+  },
+  "title": "get_group_list 请求参数",
+  "description": "获取群列表 请求参数"
+}

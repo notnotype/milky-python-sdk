@@ -1,0 +1,12 @@
+{
+  "path": "/api/recall_private_message",
+  "post": {
+    "summary": "撤回私聊消息",
+    "operationId": "recall_private_message",
+    "tags": [
+      "消息 API"
+    ],
+    "requestSchema": "Api_recall_private_message_input",
+    "responseSchema": "ApiEmptyObject"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "type": "object",
+  "properties": {
+    "member": {
+      "description": "群成员信息",
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/GroupMemberEntity"
+        }
+      ]
+    }
+  },
+  "required": [
+    "member"
+  ],
+  "title": "get_group_member_info 响应数据",
+  "description": "获取群成员信息 响应数据"
+}

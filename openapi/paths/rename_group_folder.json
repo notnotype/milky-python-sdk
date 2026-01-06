@@ -1,0 +1,12 @@
+{
+  "path": "/api/rename_group_folder",
+  "post": {
+    "summary": "重命名群文件夹",
+    "operationId": "rename_group_folder",
+    "tags": [
+      "文件 API"
+    ],
+    "requestSchema": "Api_rename_group_folder_input",
+    "responseSchema": "ApiEmptyObject"
+  }
+}

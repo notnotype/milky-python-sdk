@@ -1,0 +1,263 @@
+{
+  "title": "群通知实体",
+  "description": "群通知实体",
+  "oneOf": [
+    {
+      "title": "用户入群请求",
+      "description": "用户入群请求",
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "join_request"
+          ]
+        },
+        "group_id": {
+          "description": "群号",
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "notification_seq": {
+          "description": "通知序列号",
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "is_filtered": {
+          "description": "请求是否被过滤（发起自风险账户）",
+          "type": "boolean"
+        },
+        "initiator_id": {
+          "description": "发起者 QQ 号",
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "state": {
+          "description": "请求状态",
+          "type": "string",
+          "enum": [
+            "pending",
+            "accepted",
+            "rejected",
+            "ignored"
+          ]
+        },
+        "operator_id": {
+          "description": "处理请求的管理员 QQ 号",
+          "nullable": true,
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "comment": {
+          "description": "入群请求附加信息",
+          "type": "string"
+        }
+      },
+      "required": [
+        "type",
+        "group_id",
+        "notification_seq",
+        "is_filtered",
+        "initiator_id",
+        "state",
+        "comment"
+      ]
+    },
+    {
+      "title": "群管理员变更通知",
+      "description": "群管理员变更通知",
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "admin_change"
+          ]
+        },
+        "group_id": {
+          "description": "群号",
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "notification_seq": {
+          "description": "通知序列号",
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "target_user_id": {
+          "description": "被设置/取消用户 QQ 号",
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "is_set": {
+          "description": "是否被设置为管理员，`false` 表示被取消管理员",
+          "type": "boolean"
+        },
+        "operator_id": {
+          "description": "操作者（群主）QQ 号",
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        }
+      },
+      "required": [
+        "type",
+        "group_id",
+        "notification_seq",
+        "target_user_id",
+        "is_set",
+        "operator_id"
+      ]
+    },
+    {
+      "title": "群成员被移除通知",
+      "description": "群成员被移除通知",
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "kick"
+          ]
+        },
+        "group_id": {
+          "description": "群号",
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "notification_seq": {
+          "description": "通知序列号",
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "target_user_id": {
+          "description": "被移除用户 QQ 号",
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "operator_id": {
+          "description": "移除用户的管理员 QQ 号",
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        }
+      },
+      "required": [
+        "type",
+        "group_id",
+        "notification_seq",
+        "target_user_id",
+        "operator_id"
+      ]
+    },
+    {
+      "title": "群成员退群通知",
+      "description": "群成员退群通知",
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "quit"
+          ]
+        },
+        "group_id": {
+          "description": "群号",
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "notification_seq": {
+          "description": "通知序列号",
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "target_user_id": {
+          "description": "退群用户 QQ 号",
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        }
+      },
+      "required": [
+        "type",
+        "group_id",
+        "notification_seq",
+        "target_user_id"
+      ]
+    },
+    {
+      "title": "群成员邀请他人入群请求",
+      "description": "群成员邀请他人入群请求",
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "invited_join_request"
+          ]
+        },
+        "group_id": {
+          "description": "群号",
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "notification_seq": {
+          "description": "通知序列号",
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "initiator_id": {
+          "description": "邀请者 QQ 号",
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "target_user_id": {
+          "description": "被邀请用户 QQ 号",
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "state": {
+          "description": "请求状态",
+          "type": "string",
+          "enum": [
+            "pending",
+            "accepted",
+            "rejected",
+            "ignored"
+          ]
+        },
+        "operator_id": {
+          "description": "处理请求的管理员 QQ 号",
+          "nullable": true,
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        }
+      },
+      "required": [
+        "type",
+        "group_id",
+        "notification_seq",
+        "initiator_id",
+        "target_user_id",
+        "state"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "type": "object",
+  "properties": {
+    "group_id": {
+      "description": "群号",
+      "type": "integer",
+      "minimum": -9007199254740991,
+      "maximum": 9007199254740991
+    },
+    "user_id": {
+      "description": "被踢的 QQ 号",
+      "type": "integer",
+      "minimum": -9007199254740991,
+      "maximum": 9007199254740991
+    },
+    "reject_add_request": {
+      "description": "是否拒绝加群申请，`false` 表示不拒绝",
+      "default": false,
+      "nullable": true,
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "group_id",
+    "user_id"
+  ],
+  "title": "kick_group_member 请求参数",
+  "description": "踢出群成员 请求参数"
+}

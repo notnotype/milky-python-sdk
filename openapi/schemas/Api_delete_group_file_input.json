@@ -1,0 +1,21 @@
+{
+  "type": "object",
+  "properties": {
+    "group_id": {
+      "description": "群号",
+      "type": "integer",
+      "minimum": -9007199254740991,
+      "maximum": 9007199254740991
+    },
+    "file_id": {
+      "description": "文件 ID",
+      "type": "string"
+    }
+  },
+  "required": [
+    "group_id",
+    "file_id"
+  ],
+  "title": "delete_group_file 请求参数",
+  "description": "删除群文件 请求参数"
+}

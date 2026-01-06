@@ -1,0 +1,24 @@
+{
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "description": "好友 QQ 号",
+      "type": "integer",
+      "minimum": -9007199254740991,
+      "maximum": 9007199254740991
+    },
+    "count": {
+      "description": "点赞数量",
+      "default": 1,
+      "nullable": true,
+      "type": "integer",
+      "minimum": -2147483648,
+      "maximum": 2147483647
+    }
+  },
+  "required": [
+    "user_id"
+  ],
+  "title": "send_profile_like 请求参数",
+  "description": "发送名片点赞 请求参数"
+}

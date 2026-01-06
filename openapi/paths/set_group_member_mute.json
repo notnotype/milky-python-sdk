@@ -1,0 +1,12 @@
+{
+  "path": "/api/set_group_member_mute",
+  "post": {
+    "summary": "设置群成员禁言",
+    "operationId": "set_group_member_mute",
+    "tags": [
+      "群聊 API"
+    ],
+    "requestSchema": "Api_set_group_member_mute_input",
+    "responseSchema": "ApiEmptyObject"
+  }
+}

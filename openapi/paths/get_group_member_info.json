@@ -1,0 +1,12 @@
+{
+  "path": "/api/get_group_member_info",
+  "post": {
+    "summary": "获取群成员信息",
+    "operationId": "get_group_member_info",
+    "tags": [
+      "系统 API"
+    ],
+    "requestSchema": "Api_get_group_member_info_input",
+    "responseSchema": "Api_get_group_member_info_output"
+  }
+}

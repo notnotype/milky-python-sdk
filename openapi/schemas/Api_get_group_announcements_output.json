@@ -1,0 +1,21 @@
+{
+  "type": "object",
+  "properties": {
+    "announcements": {
+      "description": "群公告列表",
+      "type": "array",
+      "items": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/GroupAnnouncementEntity"
+          }
+        ]
+      }
+    }
+  },
+  "required": [
+    "announcements"
+  ],
+  "title": "get_group_announcements 响应数据",
+  "description": "获取群公告列表 响应数据"
+}

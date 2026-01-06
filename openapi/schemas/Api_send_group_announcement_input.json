@@ -1,0 +1,26 @@
+{
+  "type": "object",
+  "properties": {
+    "group_id": {
+      "description": "群号",
+      "type": "integer",
+      "minimum": -9007199254740991,
+      "maximum": 9007199254740991
+    },
+    "content": {
+      "description": "公告内容",
+      "type": "string"
+    },
+    "image_uri": {
+      "description": "公告附带图像文件 URI，支持 `file://` `http(s)://` `base64://` 三种格式",
+      "nullable": true,
+      "type": "string"
+    }
+  },
+  "required": [
+    "group_id",
+    "content"
+  ],
+  "title": "send_group_announcement 请求参数",
+  "description": "发送群公告 请求参数"
+}

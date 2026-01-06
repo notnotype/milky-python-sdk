@@ -1,0 +1,26 @@
+{
+  "type": "object",
+  "properties": {
+    "group_id": {
+      "description": "群号",
+      "type": "integer",
+      "minimum": -9007199254740991,
+      "maximum": 9007199254740991
+    },
+    "folder_id": {
+      "description": "文件夹 ID",
+      "type": "string"
+    },
+    "new_folder_name": {
+      "description": "新文件夹名",
+      "type": "string"
+    }
+  },
+  "required": [
+    "group_id",
+    "folder_id",
+    "new_folder_name"
+  ],
+  "title": "rename_group_folder 请求参数",
+  "description": "重命名群文件夹 请求参数"
+}

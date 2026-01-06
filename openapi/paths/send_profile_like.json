@@ -1,0 +1,12 @@
+{
+  "path": "/api/send_profile_like",
+  "post": {
+    "summary": "发送名片点赞",
+    "operationId": "send_profile_like",
+    "tags": [
+      "好友 API"
+    ],
+    "requestSchema": "Api_send_profile_like_input",
+    "responseSchema": "ApiEmptyObject"
+  }
+}

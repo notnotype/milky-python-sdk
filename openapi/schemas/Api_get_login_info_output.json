@@ -1,0 +1,21 @@
+{
+  "type": "object",
+  "properties": {
+    "uin": {
+      "description": "登录 QQ 号",
+      "type": "integer",
+      "minimum": -9007199254740991,
+      "maximum": 9007199254740991
+    },
+    "nickname": {
+      "description": "登录昵称",
+      "type": "string"
+    }
+  },
+  "required": [
+    "uin",
+    "nickname"
+  ],
+  "title": "get_login_info 响应数据",
+  "description": "获取登录信息 响应数据"
+}

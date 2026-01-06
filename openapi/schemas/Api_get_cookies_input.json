@@ -1,0 +1,14 @@
+{
+  "type": "object",
+  "properties": {
+    "domain": {
+      "description": "需要获取 Cookies 的域名",
+      "type": "string"
+    }
+  },
+  "required": [
+    "domain"
+  ],
+  "title": "get_cookies 请求参数",
+  "description": "获取 Cookies 请求参数"
+}

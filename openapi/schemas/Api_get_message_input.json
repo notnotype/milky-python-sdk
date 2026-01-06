@@ -1,0 +1,33 @@
+{
+  "type": "object",
+  "properties": {
+    "message_scene": {
+      "description": "消息场景",
+      "type": "string",
+      "enum": [
+        "friend",
+        "group",
+        "temp"
+      ]
+    },
+    "peer_id": {
+      "description": "好友 QQ 号或群号",
+      "type": "integer",
+      "minimum": -9007199254740991,
+      "maximum": 9007199254740991
+    },
+    "message_seq": {
+      "description": "消息序列号",
+      "type": "integer",
+      "minimum": -9007199254740991,
+      "maximum": 9007199254740991
+    }
+  },
+  "required": [
+    "message_scene",
+    "peer_id",
+    "message_seq"
+  ],
+  "title": "get_message 请求参数",
+  "description": "获取消息 请求参数"
+}

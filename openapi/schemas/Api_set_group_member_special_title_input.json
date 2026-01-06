@@ -1,0 +1,28 @@
+{
+  "type": "object",
+  "properties": {
+    "group_id": {
+      "description": "群号",
+      "type": "integer",
+      "minimum": -9007199254740991,
+      "maximum": 9007199254740991
+    },
+    "user_id": {
+      "description": "被设置的群成员 QQ 号",
+      "type": "integer",
+      "minimum": -9007199254740991,
+      "maximum": 9007199254740991
+    },
+    "special_title": {
+      "description": "新专属头衔",
+      "type": "string"
+    }
+  },
+  "required": [
+    "group_id",
+    "user_id",
+    "special_title"
+  ],
+  "title": "set_group_member_special_title 请求参数",
+  "description": "设置群成员专属头衔 请求参数"
+}

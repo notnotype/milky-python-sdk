@@ -1,0 +1,12 @@
+{
+  "path": "/api/set_group_member_card",
+  "post": {
+    "summary": "设置群名片",
+    "operationId": "set_group_member_card",
+    "tags": [
+      "群聊 API"
+    ],
+    "requestSchema": "Api_set_group_member_card_input",
+    "responseSchema": "ApiEmptyObject"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "type": "object",
+  "properties": {
+    "messages": {
+      "description": "获取到的消息（message_seq 升序排列），部分消息可能不存在，如撤回的消息",
+      "type": "array",
+      "items": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/IncomingMessage"
+          }
+        ]
+      }
+    },
+    "next_message_seq": {
+      "description": "下一页起始消息序列号",
+      "nullable": true,
+      "type": "integer",
+      "minimum": -9007199254740991,
+      "maximum": 9007199254740991
+    }
+  },
+  "required": [
+    "messages"
+  ],
+  "title": "get_history_messages 响应数据",
+  "description": "获取历史消息列表 响应数据"
+}

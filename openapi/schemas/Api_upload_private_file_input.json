@@ -1,0 +1,26 @@
+{
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "description": "好友 QQ 号",
+      "type": "integer",
+      "minimum": -9007199254740991,
+      "maximum": 9007199254740991
+    },
+    "file_uri": {
+      "description": "文件 URI，支持 `file://` `http(s)://` `base64://` 三种格式",
+      "type": "string"
+    },
+    "file_name": {
+      "description": "文件名称",
+      "type": "string"
+    }
+  },
+  "required": [
+    "user_id",
+    "file_uri",
+    "file_name"
+  ],
+  "title": "upload_private_file 请求参数",
+  "description": "上传私聊文件 请求参数"
+}

@@ -1,0 +1,73 @@
+{
+  "title": "群精华消息",
+  "description": "群精华消息",
+  "type": "object",
+  "properties": {
+    "group_id": {
+      "description": "群号",
+      "type": "integer",
+      "minimum": -9007199254740991,
+      "maximum": 9007199254740991
+    },
+    "message_seq": {
+      "description": "消息序列号",
+      "type": "integer",
+      "minimum": -9007199254740991,
+      "maximum": 9007199254740991
+    },
+    "message_time": {
+      "description": "消息发送时的 Unix 时间戳（秒）",
+      "type": "integer",
+      "minimum": -9007199254740991,
+      "maximum": 9007199254740991
+    },
+    "sender_id": {
+      "description": "发送者 QQ 号",
+      "type": "integer",
+      "minimum": -9007199254740991,
+      "maximum": 9007199254740991
+    },
+    "sender_name": {
+      "description": "发送者名称",
+      "type": "string"
+    },
+    "operator_id": {
+      "description": "设置精华的操作者 QQ 号",
+      "type": "integer",
+      "minimum": -9007199254740991,
+      "maximum": 9007199254740991
+    },
+    "operator_name": {
+      "description": "设置精华的操作者名称",
+      "type": "string"
+    },
+    "operation_time": {
+      "description": "消息被设置精华时的 Unix 时间戳（秒）",
+      "type": "integer",
+      "minimum": -9007199254740991,
+      "maximum": 9007199254740991
+    },
+    "segments": {
+      "description": "消息段列表",
+      "type": "array",
+      "items": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/IncomingSegment"
+          }
+        ]
+      }
+    }
+  },
+  "required": [
+    "group_id",
+    "message_seq",
+    "message_time",
+    "sender_id",
+    "sender_name",
+    "operator_id",
+    "operator_name",
+    "operation_time",
+    "segments"
+  ]
+}

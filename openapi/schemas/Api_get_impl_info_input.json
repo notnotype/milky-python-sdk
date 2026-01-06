@@ -1,0 +1,6 @@
+{
+  "type": "object",
+  "properties": {},
+  "title": "get_impl_info 请求参数",
+  "description": "获取协议端信息 请求参数"
+}

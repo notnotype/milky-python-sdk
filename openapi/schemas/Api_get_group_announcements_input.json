@@ -1,0 +1,16 @@
+{
+  "type": "object",
+  "properties": {
+    "group_id": {
+      "description": "群号",
+      "type": "integer",
+      "minimum": -9007199254740991,
+      "maximum": 9007199254740991
+    }
+  },
+  "required": [
+    "group_id"
+  ],
+  "title": "get_group_announcements 请求参数",
+  "description": "获取群公告列表 请求参数"
+}

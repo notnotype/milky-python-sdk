@@ -1,0 +1,28 @@
+{
+  "type": "object",
+  "properties": {
+    "notifications": {
+      "description": "获取到的群通知（notification_seq 降序排列），序列号不一定连续",
+      "type": "array",
+      "items": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/GroupNotification"
+          }
+        ]
+      }
+    },
+    "next_notification_seq": {
+      "description": "下一页起始通知序列号",
+      "nullable": true,
+      "type": "integer",
+      "minimum": -9007199254740991,
+      "maximum": 9007199254740991
+    }
+  },
+  "required": [
+    "notifications"
+  ],
+  "title": "get_group_notifications 响应数据",
+  "description": "获取群通知列表 响应数据"
+}

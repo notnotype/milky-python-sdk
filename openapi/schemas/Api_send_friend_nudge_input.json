@@ -1,0 +1,22 @@
+{
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "description": "好友 QQ 号",
+      "type": "integer",
+      "minimum": -9007199254740991,
+      "maximum": 9007199254740991
+    },
+    "is_self": {
+      "description": "是否戳自己",
+      "default": false,
+      "nullable": true,
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "user_id"
+  ],
+  "title": "send_friend_nudge 请求参数",
+  "description": "发送好友戳一戳 请求参数"
+}

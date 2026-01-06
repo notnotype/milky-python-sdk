@@ -1,0 +1,35 @@
+{
+  "title": "群实体",
+  "description": "群实体",
+  "type": "object",
+  "properties": {
+    "group_id": {
+      "description": "群号",
+      "type": "integer",
+      "minimum": -9007199254740991,
+      "maximum": 9007199254740991
+    },
+    "group_name": {
+      "description": "群名称",
+      "type": "string"
+    },
+    "member_count": {
+      "description": "群成员数量",
+      "type": "integer",
+      "minimum": -2147483648,
+      "maximum": 2147483647
+    },
+    "max_member_count": {
+      "description": "群容量",
+      "type": "integer",
+      "minimum": -2147483648,
+      "maximum": 2147483647
+    }
+  },
+  "required": [
+    "group_id",
+    "group_name",
+    "member_count",
+    "max_member_count"
+  ]
+}

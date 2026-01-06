@@ -1,0 +1,21 @@
+{
+  "type": "object",
+  "properties": {
+    "group_id": {
+      "description": "群号",
+      "type": "integer",
+      "minimum": -9007199254740991,
+      "maximum": 9007199254740991
+    },
+    "image_uri": {
+      "description": "头像文件 URI，支持 `file://` `http(s)://` `base64://` 三种格式",
+      "type": "string"
+    }
+  },
+  "required": [
+    "group_id",
+    "image_uri"
+  ],
+  "title": "set_group_avatar 请求参数",
+  "description": "设置群头像 请求参数"
+}

@@ -1,0 +1,50 @@
+{
+  "title": "好友实体",
+  "description": "好友实体",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "description": "用户 QQ 号",
+      "type": "integer",
+      "minimum": -9007199254740991,
+      "maximum": 9007199254740991
+    },
+    "nickname": {
+      "description": "用户昵称",
+      "type": "string"
+    },
+    "sex": {
+      "description": "用户性别",
+      "type": "string",
+      "enum": [
+        "male",
+        "female",
+        "unknown"
+      ]
+    },
+    "qid": {
+      "description": "用户 QID",
+      "type": "string"
+    },
+    "remark": {
+      "description": "好友备注",
+      "type": "string"
+    },
+    "category": {
+      "description": "好友分组",
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/FriendCategoryEntity"
+        }
+      ]
+    }
+  },
+  "required": [
+    "user_id",
+    "nickname",
+    "sex",
+    "qid",
+    "remark",
+    "category"
+  ]
+}

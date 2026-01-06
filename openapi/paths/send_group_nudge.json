@@ -1,0 +1,12 @@
+{
+  "path": "/api/send_group_nudge",
+  "post": {
+    "summary": "发送群戳一戳",
+    "operationId": "send_group_nudge",
+    "tags": [
+      "群聊 API"
+    ],
+    "requestSchema": "Api_send_group_nudge_input",
+    "responseSchema": "ApiEmptyObject"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "path": "/api/move_group_file",
+  "post": {
+    "summary": "移动群文件",
+    "operationId": "move_group_file",
+    "tags": [
+      "文件 API"
+    ],
+    "requestSchema": "Api_move_group_file_input",
+    "responseSchema": "ApiEmptyObject"
+  }
+}

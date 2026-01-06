@@ -1,0 +1,12 @@
+{
+  "path": "/api/set_group_avatar",
+  "post": {
+    "summary": "设置群头像",
+    "operationId": "set_group_avatar",
+    "tags": [
+      "群聊 API"
+    ],
+    "requestSchema": "Api_set_group_avatar_input",
+    "responseSchema": "ApiEmptyObject"
+  }
+}

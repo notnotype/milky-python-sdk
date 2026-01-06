@@ -1,0 +1,59 @@
+{
+  "title": "群文件夹实体",
+  "description": "群文件夹实体",
+  "type": "object",
+  "properties": {
+    "group_id": {
+      "description": "群号",
+      "type": "integer",
+      "minimum": -9007199254740991,
+      "maximum": 9007199254740991
+    },
+    "folder_id": {
+      "description": "文件夹 ID",
+      "type": "string"
+    },
+    "parent_folder_id": {
+      "description": "父文件夹 ID",
+      "type": "string"
+    },
+    "folder_name": {
+      "description": "文件夹名称",
+      "type": "string"
+    },
+    "created_time": {
+      "description": "创建时的 Unix 时间戳（秒）",
+      "type": "integer",
+      "minimum": -9007199254740991,
+      "maximum": 9007199254740991
+    },
+    "last_modified_time": {
+      "description": "最后修改时的 Unix 时间戳（秒）",
+      "type": "integer",
+      "minimum": -9007199254740991,
+      "maximum": 9007199254740991
+    },
+    "creator_id": {
+      "description": "创建者 QQ 号",
+      "type": "integer",
+      "minimum": -9007199254740991,
+      "maximum": 9007199254740991
+    },
+    "file_count": {
+      "description": "文件数量",
+      "type": "integer",
+      "minimum": -2147483648,
+      "maximum": 2147483647
+    }
+  },
+  "required": [
+    "group_id",
+    "folder_id",
+    "parent_folder_id",
+    "folder_name",
+    "created_time",
+    "last_modified_time",
+    "creator_id",
+    "file_count"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "path": "/api/set_group_member_special_title",
+  "post": {
+    "summary": "设置群成员专属头衔",
+    "operationId": "set_group_member_special_title",
+    "tags": [
+      "群聊 API"
+    ],
+    "requestSchema": "Api_set_group_member_special_title_input",
+    "responseSchema": "ApiEmptyObject"
+  }
+}

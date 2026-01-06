@@ -1,0 +1,23 @@
+{
+  "type": "object",
+  "properties": {
+    "group_id": {
+      "description": "群号",
+      "type": "integer",
+      "minimum": -9007199254740991,
+      "maximum": 9007199254740991
+    },
+    "invitation_seq": {
+      "description": "邀请序列号",
+      "type": "integer",
+      "minimum": -9007199254740991,
+      "maximum": 9007199254740991
+    }
+  },
+  "required": [
+    "group_id",
+    "invitation_seq"
+  ],
+  "title": "accept_group_invitation 请求参数",
+  "description": "同意他人邀请自身入群 请求参数"
+}

@@ -1,0 +1,25 @@
+{
+  "type": "object",
+  "properties": {
+    "initiator_uid": {
+      "description": "请求发起者 UID",
+      "type": "string"
+    },
+    "is_filtered": {
+      "description": "是否是被过滤的请求",
+      "default": false,
+      "nullable": true,
+      "type": "boolean"
+    },
+    "reason": {
+      "description": "拒绝理由",
+      "nullable": true,
+      "type": "string"
+    }
+  },
+  "required": [
+    "initiator_uid"
+  ],
+  "title": "reject_friend_request 请求参数",
+  "description": "拒绝好友请求 请求参数"
+}

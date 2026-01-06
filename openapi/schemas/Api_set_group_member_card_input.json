@@ -1,0 +1,28 @@
+{
+  "type": "object",
+  "properties": {
+    "group_id": {
+      "description": "群号",
+      "type": "integer",
+      "minimum": -9007199254740991,
+      "maximum": 9007199254740991
+    },
+    "user_id": {
+      "description": "被设置的群成员 QQ 号",
+      "type": "integer",
+      "minimum": -9007199254740991,
+      "maximum": 9007199254740991
+    },
+    "card": {
+      "description": "新群名片",
+      "type": "string"
+    }
+  },
+  "required": [
+    "group_id",
+    "user_id",
+    "card"
+  ],
+  "title": "set_group_member_card 请求参数",
+  "description": "设置群名片 请求参数"
+}

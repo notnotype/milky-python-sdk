@@ -1,0 +1,12 @@
+{
+  "path": "/api/upload_group_file",
+  "post": {
+    "summary": "上传群文件",
+    "operationId": "upload_group_file",
+    "tags": [
+      "文件 API"
+    ],
+    "requestSchema": "Api_upload_group_file_input",
+    "responseSchema": "Api_upload_group_file_output"
+  }
+}

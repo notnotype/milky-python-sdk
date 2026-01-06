@@ -1,0 +1,398 @@
+{
+  "info": {
+    "title": "Milky",
+    "version": "1.0.0",
+    "description": "Milky 协议 API 与事件定义（v1.0）"
+  },
+  "schemas": [
+    "Event",
+    "FriendEntity",
+    "FriendCategoryEntity",
+    "GroupEntity",
+    "GroupMemberEntity",
+    "GroupAnnouncementEntity",
+    "GroupFileEntity",
+    "GroupFolderEntity",
+    "FriendRequest",
+    "GroupNotification",
+    "IncomingMessage",
+    "IncomingForwardedMessage",
+    "GroupEssenceMessage",
+    "IncomingSegment",
+    "OutgoingForwardedMessage",
+    "OutgoingSegment",
+    "Api_get_login_info_input",
+    "Api_get_login_info_output",
+    "Api_get_impl_info_input",
+    "Api_get_impl_info_output",
+    "Api_get_user_profile_input",
+    "Api_get_user_profile_output",
+    "Api_get_friend_list_input",
+    "Api_get_friend_list_output",
+    "Api_get_friend_info_input",
+    "Api_get_friend_info_output",
+    "Api_get_group_list_input",
+    "Api_get_group_list_output",
+    "Api_get_group_info_input",
+    "Api_get_group_info_output",
+    "Api_get_group_member_list_input",
+    "Api_get_group_member_list_output",
+    "Api_get_group_member_info_input",
+    "Api_get_group_member_info_output",
+    "Api_get_cookies_input",
+    "Api_get_cookies_output",
+    "Api_get_csrf_token_input",
+    "Api_get_csrf_token_output",
+    "Api_send_private_message_input",
+    "Api_send_private_message_output",
+    "Api_send_group_message_input",
+    "Api_send_group_message_output",
+    "Api_recall_private_message_input",
+    "Api_recall_group_message_input",
+    "Api_get_message_input",
+    "Api_get_message_output",
+    "Api_get_history_messages_input",
+    "Api_get_history_messages_output",
+    "Api_get_resource_temp_url_input",
+    "Api_get_resource_temp_url_output",
+    "Api_get_forwarded_messages_input",
+    "Api_get_forwarded_messages_output",
+    "Api_mark_message_as_read_input",
+    "Api_send_friend_nudge_input",
+    "Api_send_profile_like_input",
+    "Api_get_friend_requests_input",
+    "Api_get_friend_requests_output",
+    "Api_accept_friend_request_input",
+    "Api_reject_friend_request_input",
+    "Api_set_group_name_input",
+    "Api_set_group_avatar_input",
+    "Api_set_group_member_card_input",
+    "Api_set_group_member_special_title_input",
+    "Api_set_group_member_admin_input",
+    "Api_set_group_member_mute_input",
+    "Api_set_group_whole_mute_input",
+    "Api_kick_group_member_input",
+    "Api_get_group_announcements_input",
+    "Api_get_group_announcements_output",
+    "Api_send_group_announcement_input",
+    "Api_delete_group_announcement_input",
+    "Api_get_group_essence_messages_input",
+    "Api_get_group_essence_messages_output",
+    "Api_set_group_essence_message_input",
+    "Api_quit_group_input",
+    "Api_send_group_message_reaction_input",
+    "Api_send_group_nudge_input",
+    "Api_get_group_notifications_input",
+    "Api_get_group_notifications_output",
+    "Api_accept_group_request_input",
+    "Api_reject_group_request_input",
+    "Api_accept_group_invitation_input",
+    "Api_reject_group_invitation_input",
+    "Api_upload_private_file_input",
+    "Api_upload_private_file_output",
+    "Api_upload_group_file_input",
+    "Api_upload_group_file_output",
+    "Api_get_private_file_download_url_input",
+    "Api_get_private_file_download_url_output",
+    "Api_get_group_file_download_url_input",
+    "Api_get_group_file_download_url_output",
+    "Api_get_group_files_input",
+    "Api_get_group_files_output",
+    "Api_move_group_file_input",
+    "Api_rename_group_file_input",
+    "Api_delete_group_file_input",
+    "Api_create_group_folder_input",
+    "Api_create_group_folder_output",
+    "Api_rename_group_folder_input",
+    "Api_delete_group_folder_input",
+    "ApiResponse",
+    "ApiEmptyObject"
+  ],
+  "endpoints": [
+    {
+      "path": "/api/get_login_info",
+      "operationId": "get_login_info",
+      "summary": "获取登录信息"
+    },
+    {
+      "path": "/api/get_impl_info",
+      "operationId": "get_impl_info",
+      "summary": "获取协议端信息"
+    },
+    {
+      "path": "/api/get_user_profile",
+      "operationId": "get_user_profile",
+      "summary": "获取用户个人信息"
+    },
+    {
+      "path": "/api/get_friend_list",
+      "operationId": "get_friend_list",
+      "summary": "获取好友列表"
+    },
+    {
+      "path": "/api/get_friend_info",
+      "operationId": "get_friend_info",
+      "summary": "获取好友信息"
+    },
+    {
+      "path": "/api/get_group_list",
+      "operationId": "get_group_list",
+      "summary": "获取群列表"
+    },
+    {
+      "path": "/api/get_group_info",
+      "operationId": "get_group_info",
+      "summary": "获取群信息"
+    },
+    {
+      "path": "/api/get_group_member_list",
+      "operationId": "get_group_member_list",
+      "summary": "获取群成员列表"
+    },
+    {
+      "path": "/api/get_group_member_info",
+      "operationId": "get_group_member_info",
+      "summary": "获取群成员信息"
+    },
+    {
+      "path": "/api/get_cookies",
+      "operationId": "get_cookies",
+      "summary": "获取 Cookies"
+    },
+    {
+      "path": "/api/get_csrf_token",
+      "operationId": "get_csrf_token",
+      "summary": "获取 CSRF Token"
+    },
+    {
+      "path": "/api/send_private_message",
+      "operationId": "send_private_message",
+      "summary": "发送私聊消息"
+    },
+    {
+      "path": "/api/send_group_message",
+      "operationId": "send_group_message",
+      "summary": "发送群聊消息"
+    },
+    {
+      "path": "/api/recall_private_message",
+      "operationId": "recall_private_message",
+      "summary": "撤回私聊消息"
+    },
+    {
+      "path": "/api/recall_group_message",
+      "operationId": "recall_group_message",
+      "summary": "撤回群聊消息"
+    },
+    {
+      "path": "/api/get_message",
+      "operationId": "get_message",
+      "summary": "获取消息"
+    },
+    {
+      "path": "/api/get_history_messages",
+      "operationId": "get_history_messages",
+      "summary": "获取历史消息列表"
+    },
+    {
+      "path": "/api/get_resource_temp_url",
+      "operationId": "get_resource_temp_url",
+      "summary": "获取临时资源链接"
+    },
+    {
+      "path": "/api/get_forwarded_messages",
+      "operationId": "get_forwarded_messages",
+      "summary": "获取合并转发消息内容"
+    },
+    {
+      "path": "/api/mark_message_as_read",
+      "operationId": "mark_message_as_read",
+      "summary": "标记消息为已读"
+    },
+    {
+      "path": "/api/send_friend_nudge",
+      "operationId": "send_friend_nudge",
+      "summary": "发送好友戳一戳"
+    },
+    {
+      "path": "/api/send_profile_like",
+      "operationId": "send_profile_like",
+      "summary": "发送名片点赞"
+    },
+    {
+      "path": "/api/get_friend_requests",
+      "operationId": "get_friend_requests",
+      "summary": "获取好友请求列表"
+    },
+    {
+      "path": "/api/accept_friend_request",
+      "operationId": "accept_friend_request",
+      "summary": "同意好友请求"
+    },
+    {
+      "path": "/api/reject_friend_request",
+      "operationId": "reject_friend_request",
+      "summary": "拒绝好友请求"
+    },
+    {
+      "path": "/api/set_group_name",
+      "operationId": "set_group_name",
+      "summary": "设置群名称"
+    },
+    {
+      "path": "/api/set_group_avatar",
+      "operationId": "set_group_avatar",
+      "summary": "设置群头像"
+    },
+    {
+      "path": "/api/set_group_member_card",
+      "operationId": "set_group_member_card",
+      "summary": "设置群名片"
+    },
+    {
+      "path": "/api/set_group_member_special_title",
+      "operationId": "set_group_member_special_title",
+      "summary": "设置群成员专属头衔"
+    },
+    {
+      "path": "/api/set_group_member_admin",
+      "operationId": "set_group_member_admin",
+      "summary": "设置群管理员"
+    },
+    {
+      "path": "/api/set_group_member_mute",
+      "operationId": "set_group_member_mute",
+      "summary": "设置群成员禁言"
+    },
+    {
+      "path": "/api/set_group_whole_mute",
+      "operationId": "set_group_whole_mute",
+      "summary": "设置群全员禁言"
+    },
+    {
+      "path": "/api/kick_group_member",
+      "operationId": "kick_group_member",
+      "summary": "踢出群成员"
+    },
+    {
+      "path": "/api/get_group_announcements",
+      "operationId": "get_group_announcements",
+      "summary": "获取群公告列表"
+    },
+    {
+      "path": "/api/send_group_announcement",
+      "operationId": "send_group_announcement",
+      "summary": "发送群公告"
+    },
+    {
+      "path": "/api/delete_group_announcement",
+      "operationId": "delete_group_announcement",
+      "summary": "删除群公告"
+    },
+    {
+      "path": "/api/get_group_essence_messages",
+      "operationId": "get_group_essence_messages",
+      "summary": "获取群精华消息列表"
+    },
+    {
+      "path": "/api/set_group_essence_message",
+      "operationId": "set_group_essence_message",
+      "summary": "设置群精华消息"
+    },
+    {
+      "path": "/api/quit_group",
+      "operationId": "quit_group",
+      "summary": "退出群"
+    },
+    {
+      "path": "/api/send_group_message_reaction",
+      "operationId": "send_group_message_reaction",
+      "summary": "发送群消息表情回应"
+    },
+    {
+      "path": "/api/send_group_nudge",
+      "operationId": "send_group_nudge",
+      "summary": "发送群戳一戳"
+    },
+    {
+      "path": "/api/get_group_notifications",
+      "operationId": "get_group_notifications",
+      "summary": "获取群通知列表"
+    },
+    {
+      "path": "/api/accept_group_request",
+      "operationId": "accept_group_request",
+      "summary": "同意入群/邀请他人入群请求"
+    },
+    {
+      "path": "/api/reject_group_request",
+      "operationId": "reject_group_request",
+      "summary": "拒绝入群/邀请他人入群请求"
+    },
+    {
+      "path": "/api/accept_group_invitation",
+      "operationId": "accept_group_invitation",
+      "summary": "同意他人邀请自身入群"
+    },
+    {
+      "path": "/api/reject_group_invitation",
+      "operationId": "reject_group_invitation",
+      "summary": "拒绝他人邀请自身入群"
+    },
+    {
+      "path": "/api/upload_private_file",
+      "operationId": "upload_private_file",
+      "summary": "上传私聊文件"
+    },
+    {
+      "path": "/api/upload_group_file",
+      "operationId": "upload_group_file",
+      "summary": "上传群文件"
+    },
+    {
+      "path": "/api/get_private_file_download_url",
+      "operationId": "get_private_file_download_url",
+      "summary": "获取私聊文件下载链接"
+    },
+    {
+      "path": "/api/get_group_file_download_url",
+      "operationId": "get_group_file_download_url",
+      "summary": "获取群文件下载链接"
+    },
+    {
+      "path": "/api/get_group_files",
+      "operationId": "get_group_files",
+      "summary": "获取群文件列表"
+    },
+    {
+      "path": "/api/move_group_file",
+      "operationId": "move_group_file",
+      "summary": "移动群文件"
+    },
+    {
+      "path": "/api/rename_group_file",
+      "operationId": "rename_group_file",
+      "summary": "重命名群文件"
+    },
+    {
+      "path": "/api/delete_group_file",
+      "operationId": "delete_group_file",
+      "summary": "删除群文件"
+    },
+    {
+      "path": "/api/create_group_folder",
+      "operationId": "create_group_folder",
+      "summary": "创建群文件夹"
+    },
+    {
+      "path": "/api/rename_group_folder",
+      "operationId": "rename_group_folder",
+      "summary": "重命名群文件夹"
+    },
+    {
+      "path": "/api/delete_group_folder",
+      "operationId": "delete_group_folder",
+      "summary": "删除群文件夹"
+    }
+  ]
+}

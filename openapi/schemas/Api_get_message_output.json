@@ -1,0 +1,18 @@
+{
+  "type": "object",
+  "properties": {
+    "message": {
+      "description": "消息内容",
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/IncomingMessage"
+        }
+      ]
+    }
+  },
+  "required": [
+    "message"
+  ],
+  "title": "get_message 响应数据",
+  "description": "获取消息 响应数据"
+}

@@ -1,0 +1,21 @@
+{
+  "type": "object",
+  "properties": {
+    "requests": {
+      "description": "好友请求列表",
+      "type": "array",
+      "items": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/FriendRequest"
+          }
+        ]
+      }
+    }
+  },
+  "required": [
+    "requests"
+  ],
+  "title": "get_friend_requests 响应数据",
+  "description": "获取好友请求列表 响应数据"
+}

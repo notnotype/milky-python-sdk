@@ -1,0 +1,14 @@
+{
+  "type": "object",
+  "properties": {
+    "forward_id": {
+      "description": "转发消息 ID",
+      "type": "string"
+    }
+  },
+  "required": [
+    "forward_id"
+  ],
+  "title": "get_forwarded_messages 请求参数",
+  "description": "获取合并转发消息内容 请求参数"
+}

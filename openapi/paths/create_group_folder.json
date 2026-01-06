@@ -1,0 +1,12 @@
+{
+  "path": "/api/create_group_folder",
+  "post": {
+    "summary": "创建群文件夹",
+    "operationId": "create_group_folder",
+    "tags": [
+      "文件 API"
+    ],
+    "requestSchema": "Api_create_group_folder_input",
+    "responseSchema": "Api_create_group_folder_output"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "path": "/api/reject_group_request",
+  "post": {
+    "summary": "拒绝入群/邀请他人入群请求",
+    "operationId": "reject_group_request",
+    "tags": [
+      "群聊 API"
+    ],
+    "requestSchema": "Api_reject_group_request_input",
+    "responseSchema": "ApiEmptyObject"
+  }
+}

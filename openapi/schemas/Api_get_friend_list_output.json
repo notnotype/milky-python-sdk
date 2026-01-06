@@ -1,0 +1,21 @@
+{
+  "type": "object",
+  "properties": {
+    "friends": {
+      "description": "好友列表",
+      "type": "array",
+      "items": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/FriendEntity"
+          }
+        ]
+      }
+    }
+  },
+  "required": [
+    "friends"
+  ],
+  "title": "get_friend_list 响应数据",
+  "description": "获取好友列表 响应数据"
+}

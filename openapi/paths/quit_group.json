@@ -1,0 +1,12 @@
+{
+  "path": "/api/quit_group",
+  "post": {
+    "summary": "退出群",
+    "operationId": "quit_group",
+    "tags": [
+      "群聊 API"
+    ],
+    "requestSchema": "Api_quit_group_input",
+    "responseSchema": "ApiEmptyObject"
+  }
+}

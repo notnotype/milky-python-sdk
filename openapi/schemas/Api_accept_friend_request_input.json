@@ -1,0 +1,20 @@
+{
+  "type": "object",
+  "properties": {
+    "initiator_uid": {
+      "description": "请求发起者 UID",
+      "type": "string"
+    },
+    "is_filtered": {
+      "description": "是否是被过滤的请求",
+      "default": false,
+      "nullable": true,
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "initiator_uid"
+  ],
+  "title": "accept_friend_request 请求参数",
+  "description": "同意好友请求 请求参数"
+}

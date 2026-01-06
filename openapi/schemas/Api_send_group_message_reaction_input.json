@@ -1,0 +1,34 @@
+{
+  "type": "object",
+  "properties": {
+    "group_id": {
+      "description": "群号",
+      "type": "integer",
+      "minimum": -9007199254740991,
+      "maximum": 9007199254740991
+    },
+    "message_seq": {
+      "description": "要回应的消息序列号",
+      "type": "integer",
+      "minimum": -9007199254740991,
+      "maximum": 9007199254740991
+    },
+    "reaction": {
+      "description": "表情 ID",
+      "type": "string"
+    },
+    "is_add": {
+      "description": "是否添加表情，`false` 表示取消",
+      "default": true,
+      "nullable": true,
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "group_id",
+    "message_seq",
+    "reaction"
+  ],
+  "title": "send_group_message_reaction 请求参数",
+  "description": "发送群消息表情回应 请求参数"
+}

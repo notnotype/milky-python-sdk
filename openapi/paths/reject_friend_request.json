@@ -1,0 +1,12 @@
+{
+  "path": "/api/reject_friend_request",
+  "post": {
+    "summary": "拒绝好友请求",
+    "operationId": "reject_friend_request",
+    "tags": [
+      "好友 API"
+    ],
+    "requestSchema": "Api_reject_friend_request_input",
+    "responseSchema": "ApiEmptyObject"
+  }
+}

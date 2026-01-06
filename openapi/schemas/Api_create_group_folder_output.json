@@ -1,0 +1,14 @@
+{
+  "type": "object",
+  "properties": {
+    "folder_id": {
+      "description": "文件夹 ID",
+      "type": "string"
+    }
+  },
+  "required": [
+    "folder_id"
+  ],
+  "title": "create_group_folder 响应数据",
+  "description": "创建群文件夹 响应数据"
+}

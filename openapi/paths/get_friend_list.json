@@ -1,0 +1,12 @@
+{
+  "path": "/api/get_friend_list",
+  "post": {
+    "summary": "获取好友列表",
+    "operationId": "get_friend_list",
+    "tags": [
+      "系统 API"
+    ],
+    "requestSchema": "Api_get_group_list_input",
+    "responseSchema": "Api_get_friend_list_output"
+  }
+}

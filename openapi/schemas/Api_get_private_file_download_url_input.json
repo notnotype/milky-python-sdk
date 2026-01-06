@@ -1,0 +1,26 @@
+{
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "description": "好友 QQ 号",
+      "type": "integer",
+      "minimum": -9007199254740991,
+      "maximum": 9007199254740991
+    },
+    "file_id": {
+      "description": "文件 ID",
+      "type": "string"
+    },
+    "file_hash": {
+      "description": "文件的 TriSHA1 哈希值",
+      "type": "string"
+    }
+  },
+  "required": [
+    "user_id",
+    "file_id",
+    "file_hash"
+  ],
+  "title": "get_private_file_download_url 请求参数",
+  "description": "获取私聊文件下载链接 请求参数"
+}

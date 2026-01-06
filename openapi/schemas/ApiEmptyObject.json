@@ -1,0 +1,5 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "description": "空对象，用于无输入/输出的 API"
+}

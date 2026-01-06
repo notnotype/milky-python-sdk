@@ -1,0 +1,28 @@
+{
+  "type": "object",
+  "properties": {
+    "start_notification_seq": {
+      "description": "起始通知序列号",
+      "nullable": true,
+      "type": "integer",
+      "minimum": -9007199254740991,
+      "maximum": 9007199254740991
+    },
+    "is_filtered": {
+      "description": "`true` 表示只获取被过滤（由风险账号发起）的通知，`false` 表示只获取未被过滤的通知",
+      "default": false,
+      "nullable": true,
+      "type": "boolean"
+    },
+    "limit": {
+      "description": "获取的最大通知数量",
+      "default": 20,
+      "nullable": true,
+      "type": "integer",
+      "minimum": -2147483648,
+      "maximum": 2147483647
+    }
+  },
+  "title": "get_group_notifications 请求参数",
+  "description": "获取群通知列表 请求参数"
+}

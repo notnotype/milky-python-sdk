@@ -1,0 +1,12 @@
+{
+  "path": "/api/mark_message_as_read",
+  "post": {
+    "summary": "标记消息为已读",
+    "operationId": "mark_message_as_read",
+    "tags": [
+      "消息 API"
+    ],
+    "requestSchema": "Api_mark_message_as_read_input",
+    "responseSchema": "ApiEmptyObject"
+  }
+}

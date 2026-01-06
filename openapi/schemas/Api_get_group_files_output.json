@@ -1,0 +1,33 @@
+{
+  "type": "object",
+  "properties": {
+    "files": {
+      "description": "文件列表",
+      "type": "array",
+      "items": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/GroupFileEntity"
+          }
+        ]
+      }
+    },
+    "folders": {
+      "description": "文件夹列表",
+      "type": "array",
+      "items": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/GroupFolderEntity"
+          }
+        ]
+      }
+    }
+  },
+  "required": [
+    "files",
+    "folders"
+  ],
+  "title": "get_group_files 响应数据",
+  "description": "获取群文件列表 响应数据"
+}

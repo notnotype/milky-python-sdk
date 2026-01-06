@@ -1,0 +1,23 @@
+{
+  "type": "object",
+  "properties": {
+    "group_id": {
+      "description": "群号",
+      "type": "integer",
+      "minimum": -9007199254740991,
+      "maximum": 9007199254740991
+    },
+    "user_id": {
+      "description": "被戳的群成员 QQ 号",
+      "type": "integer",
+      "minimum": -9007199254740991,
+      "maximum": 9007199254740991
+    }
+  },
+  "required": [
+    "group_id",
+    "user_id"
+  ],
+  "title": "send_group_nudge 请求参数",
+  "description": "发送群戳一戳 请求参数"
+}

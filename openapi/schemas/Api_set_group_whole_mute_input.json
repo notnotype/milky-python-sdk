@@ -1,0 +1,22 @@
+{
+  "type": "object",
+  "properties": {
+    "group_id": {
+      "description": "群号",
+      "type": "integer",
+      "minimum": -9007199254740991,
+      "maximum": 9007199254740991
+    },
+    "is_mute": {
+      "description": "是否开启全员禁言，`false` 表示取消全员禁言",
+      "default": true,
+      "nullable": true,
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "group_id"
+  ],
+  "title": "set_group_whole_mute 请求参数",
+  "description": "设置群全员禁言 请求参数"
+}
