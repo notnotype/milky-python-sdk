@@ -1,7 +1,7 @@
 # Milky Python SDK
 
 [![PyPI](https://img.shields.io/pypi/v/milky-python-sdk)](https://pypi.org/project/milky-python-sdk/)
-[![License](https://img.shields.io/github/license/example/milky-python-sdk)](LICENSE)
+[![License](https://img.shields.io/github/license/notnotype/milky-python-sdk)](LICENSE)
 [English Documentation](README_EN.md)
 
 Milky SDK 是用于与 Milky 协议端通信的 Python SDK，支持同步/异步两种模式和装饰器风格的事件系统。
