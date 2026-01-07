@@ -1,6 +1,6 @@
 [project]
 name = "milky-python-sdk"
-version = "0.2.0"
+version = "0.2.2"
 description = "Python SDK for Milky Protocol"
 readme = "README.md"
 requires-python = ">=3.11"
@@ -18,7 +18,7 @@ classifiers = [
 ]
 
 [project.urls]
-Repository = "https://github.com/example/milky-python-sdk"
+Repository = "https://github.com/notnotype/milky-python-sdk"
 
 [build-system]
 requires = ["hatchling"]
