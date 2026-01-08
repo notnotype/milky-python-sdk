@@ -28,6 +28,7 @@ The raw OpenAPI specifications for the Milky Protocol server are located in the 
 
 ```python
 from milky import MilkyBot
+from milky.models import MessageEvent
 from collections import defaultdict
 
 bot = MilkyBot("http://localhost:3010", "token")
@@ -35,15 +36,15 @@ bot = MilkyBot("http://localhost:3010", "token")
 user_state = defaultdict(int)
 
 @bot.on_command("survey")
-async def start_survey(event, args):
+async def start_survey(event: MessageEvent, args: str):
     """Start a multi-step survey"""
-    user_id = event["data"]["sender_id"]
+    user_id = event.data.sender_id
     user_state[user_id] = 1
     await bot.reply(event, "Step 1: What is your favorite color?")
 
 @bot.on_message("friend")
-async def handle_survey_response(event):
-    user_id = event["data"]["sender_id"]
+async def handle_survey_response(event: MessageEvent):
+    user_id = event.data.sender_id
     state = user_state[user_id]
     
     if state == 1:
@@ -65,20 +66,20 @@ from milky.models import OutgoingImageSegment, OutgoingImageSegmentData
 bot = MilkyBot("http://localhost:3010", "token")
 
 @bot.on_message("friend")
-async def echo_image(event):
-    data = event["data"]
-    for seg in data["segments"]:
-        if seg["type"] == "image":
-            image_id = seg["data"]["image_id"]
+async def echo_image(event: MessageEvent):
+    data = event.data
+    for seg in data.segments:
+        if seg.type == "image":
+            image_id = seg.data.resource_id
             # To send an image back, we can use the file_id if the server supports it, 
             # or upload a new one. Here we demonstrate constructing an outgoing segment.
             # Assuming we have a URL or file path:
             message = [
                 OutgoingImageSegment(
-                    data=OutgoingImageSegmentData(image_uri="https://example.com/image.png")
+                    data=OutgoingImageSegmentData(uri="https://example.com/image.png", sub_type="normal")
                 )
             ]
-            await bot.client.send_private_message(data["sender_id"], message)
+            await bot.client.send_private_message(data.sender_id, message)
 ```
 
 ### 3. Dynamic API Usage with Error Handling

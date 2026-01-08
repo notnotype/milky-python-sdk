@@ -22,11 +22,11 @@ from milky import MilkyBot
 bot = MilkyBot("http://localhost:3010", "token")
 
 @bot.on_mention()
-async def handle(event):
+async def handle(event: MessageEvent):
     await bot.reply(event, "你好！")
 
 @bot.on_command("help")
-async def help_cmd(event, args):
+async def help_cmd(event: MessageEvent, args: str):
     await bot.reply(event, "帮助信息")
 
 bot.run()
@@ -156,9 +156,9 @@ async def echo(event, args):
         await bot.reply(event, args, at_sender=False)
 
 @bot.on_message("group")
-async def log_group(event):
-    data = event["data"]
-    print(f"群 {data['peer_id']}: {data['segments']}")
+async def log_group(event: MessageEvent):
+    data = event.data
+    print(f"Group {data.peer_id}: {data.segments}")
 
 bot.run()
 ```
