@@ -60,6 +60,38 @@ class NotificationType(str, Enum):
     INVITED_JOIN_REQUEST = "invited_join_request"
 
 
+class EventType(str, Enum):
+    """事件类型"""
+
+    # 消息事件
+    MESSAGE_RECEIVE = "message_receive"
+    MESSAGE_RECALL = "message_recall"
+
+    # 好友事件
+    FRIEND_REQUEST = "friend_request"
+    FRIEND_NUDGE = "friend_nudge"
+    FRIEND_FILE_UPLOAD = "friend_file_upload"
+
+    # 群事件
+    GROUP_JOIN_REQUEST = "group_join_request"
+    GROUP_INVITED_JOIN_REQUEST = "group_invited_join_request"
+    GROUP_INVITATION = "group_invitation"
+    GROUP_ADMIN_CHANGE = "group_admin_change"
+    GROUP_MEMBER_INCREASE = "group_member_increase"
+    GROUP_MEMBER_DECREASE = "group_member_decrease"
+    GROUP_NAME_CHANGE = "group_name_change"
+    GROUP_ESSENCE_MESSAGE_CHANGE = "group_essence_message_change"
+    GROUP_MESSAGE_REACTION = "group_message_reaction"
+    GROUP_MUTE = "group_mute"
+    GROUP_WHOLE_MUTE = "group_whole_mute"
+    GROUP_NUDGE = "group_nudge"
+    GROUP_FILE_UPLOAD = "group_file_upload"
+
+    # 系统事件
+    BOT_OFFLINE = "bot_offline"
+
+
+
 # ============================================================================
 # Entities
 # ============================================================================
@@ -655,3 +687,26 @@ class CreateFolderResult(BaseModel):
     """创建文件夹结果"""
 
     folder_id: str = Field(description="文件夹 ID")
+
+
+class MilkyEvent(BaseModel):
+    """基础事件模型"""
+    event_type: EventType
+    data: Any
+
+
+class MessageEvent(MilkyEvent):
+    """消息事件"""
+    event_type: Literal[EventType.MESSAGE_RECEIVE] = EventType.MESSAGE_RECEIVE
+    data: IncomingMessage
+
+
+class NoticeEvent(MilkyEvent):
+    """通知事件 (通用)"""
+    pass
+
+
+class RequestEvent(MilkyEvent):
+    """请求事件 (通用)"""
+    pass
+

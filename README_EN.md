@@ -23,8 +23,10 @@ from milky import MilkyBot
 # Initialize bot with API endpoint and token
 bot = MilkyBot("http://localhost:3010", "your_token")
 
+from milky.models import MessageEvent
+
 @bot.on_mention()
-async def handle_mention(event):
+async def handle(event: MessageEvent):
     await bot.reply(event, "Hello!")
 
 @bot.on_command("echo")

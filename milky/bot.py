@@ -9,6 +9,10 @@ from typing import Any, Callable, Coroutine, Optional, TypeVar
 
 from milky.async_client import AsyncMilkyClient, MilkyError, MilkyHttpError
 from milky.models import (
+    EventType,
+    IncomingMessage,
+    MessageEvent,
+    MilkyEvent,
     OutgoingMentionSegment,
     OutgoingSegment,
     OutgoingTextSegment,
@@ -19,37 +23,6 @@ from milky.models import (
 logger = logging.getLogger(__name__)
 
 F = TypeVar("F", bound=Callable[..., Coroutine[Any, Any, Any]])
-
-
-class EventType(str, Enum):
-    """事件类型"""
-    
-    # 消息事件
-    MESSAGE_RECEIVE = "message_receive"
-    MESSAGE_RECALL = "message_recall"
-    
-    # 好友事件
-    FRIEND_REQUEST = "friend_request"
-    FRIEND_NUDGE = "friend_nudge"
-    FRIEND_FILE_UPLOAD = "friend_file_upload"
-    
-    # 群事件
-    GROUP_JOIN_REQUEST = "group_join_request"
-    GROUP_INVITED_JOIN_REQUEST = "group_invited_join_request"
-    GROUP_INVITATION = "group_invitation"
-    GROUP_ADMIN_CHANGE = "group_admin_change"
-    GROUP_MEMBER_INCREASE = "group_member_increase"
-    GROUP_MEMBER_DECREASE = "group_member_decrease"
-    GROUP_NAME_CHANGE = "group_name_change"
-    GROUP_ESSENCE_MESSAGE_CHANGE = "group_essence_message_change"
-    GROUP_MESSAGE_REACTION = "group_message_reaction"
-    GROUP_MUTE = "group_mute"
-    GROUP_WHOLE_MUTE = "group_whole_mute"
-    GROUP_NUDGE = "group_nudge"
-    GROUP_FILE_UPLOAD = "group_file_upload"
-    
-    # 系统事件
-    BOT_OFFLINE = "bot_offline"
 
 
 class MilkyBot:
@@ -124,9 +97,10 @@ class MilkyBot:
                 pass
         """
         def decorator(func: F) -> F:
-            async def wrapper(event: dict) -> None:
-                data = event.get("data", {})
-                if scene is None or data.get("message_scene") == scene:
+            async def wrapper(event: MilkyEvent) -> None:
+                if not isinstance(event, MessageEvent):
+                    return
+                if scene is None or event.data.message_scene == scene:
                     await func(event)
             self._handlers.setdefault("message_receive", []).append(wrapper)
             return func
@@ -144,7 +118,7 @@ class MilkyBot:
                 await bot.reply(event, "你好!")
         """
         def decorator(func: F) -> F:
-            async def wrapper(event: dict) -> None:
+            async def wrapper(event: MilkyEvent) -> None:
                 if self._is_mentioned(event):
                     await func(event)
             self._handlers.setdefault("message_receive", []).append(wrapper)
@@ -169,7 +143,7 @@ class MilkyBot:
         full_command = f"{prefix}{command}"
         
         def decorator(func: F) -> F:
-            async def wrapper(event: dict) -> None:
+            async def wrapper(event: MilkyEvent) -> None:
                 text = self._get_text(event)
                 if text.startswith(full_command):
                     args = text[len(full_command):].strip()
@@ -182,29 +156,40 @@ class MilkyBot:
     # 辅助方法
     # ========================================================================
     
-    def _is_mentioned(self, event: dict) -> bool:
+    # ========================================================================
+    # 辅助方法
+    # ========================================================================
+    
+    def _is_mentioned(self, event: MilkyEvent) -> bool:
         """检查 bot 是否被 @"""
         if self._bot_id is None:
             return False
-        data = event.get("data", {})
-        for seg in data.get("segments", []):
-            if seg.get("type") == "mention":
-                if seg.get("data", {}).get("user_id") == self._bot_id:
+        
+        if not isinstance(event, MessageEvent):
+            return False
+            
+        data = event.data
+        for seg in data.segments:
+            if seg.type == "mention":
+                if seg.data.user_id == self._bot_id:
                     return True
         return False
     
-    def _get_text(self, event: dict) -> str:
+    def _get_text(self, event: MilkyEvent) -> str:
         """提取消息中的纯文本"""
-        data = event.get("data", {})
+        if not isinstance(event, MessageEvent):
+            return ""
+            
+        data = event.data
         texts = []
-        for seg in data.get("segments", []):
-            if seg.get("type") == "text":
-                texts.append(seg.get("data", {}).get("text", ""))
+        for seg in data.segments:
+            if seg.type == "text":
+                texts.append(seg.data.text)
         return "".join(texts).strip()
     
     async def reply(
         self,
-        event: dict,
+        event: MilkyEvent,
         content: str,
         at_sender: bool = True,
     ) -> None:
@@ -212,33 +197,35 @@ class MilkyBot:
         快捷回复消息
         
         Args:
-            event: 原始事件
+            event: 原始事件 (MessageEvent)
             content: 回复内容
             at_sender: 是否 @ 发送者（仅群聊有效）
         """
-        data = event.get("data", {})
-        scene = data.get("message_scene")
-        peer_id = data.get("peer_id")
-        sender_id = data.get("sender_id")
+        if not isinstance(event, MessageEvent):
+            logger.warning("Reply called on non-message event")
+            return
+
+        data = event.data
+        scene = data.message_scene
         
         message: list[OutgoingSegment] = []
         
         if at_sender and scene == "group":
             message.append(OutgoingMentionSegment(
-                data=MentionSegmentData(user_id=sender_id)
+                data=MentionSegmentData(user_id=data.sender_id)
             ))
             content = " " + content
         
         message.append(OutgoingTextSegment(data=TextSegmentData(text=content)))
         
         if scene == "group":
-            await self.client.send_group_message(peer_id, message)
+            await self.client.send_group_message(data.peer_id, message)
         elif scene == "friend":
-            await self.client.send_private_message(sender_id, message)
-    
+            await self.client.send_private_message(data.sender_id, message)
+            
     async def send(
         self,
-        event: dict,
+        event: MilkyEvent,
         message: list[OutgoingSegment],
     ) -> None:
         """
@@ -248,15 +235,17 @@ class MilkyBot:
             event: 原始事件
             message: 消息段列表
         """
-        data = event.get("data", {})
-        scene = data.get("message_scene")
-        peer_id = data.get("peer_id")
-        sender_id = data.get("sender_id")
+        if not isinstance(event, MessageEvent):
+            logger.warning("Send called on non-message event")
+            return
+            
+        data = event.data
+        scene = data.message_scene
         
         if scene == "group":
-            await self.client.send_group_message(peer_id, message)
+            await self.client.send_group_message(data.peer_id, message)
         elif scene == "friend":
-            await self.client.send_private_message(sender_id, message)
+            await self.client.send_private_message(data.sender_id, message)
     
     # ========================================================================
     # 运行
@@ -264,12 +253,24 @@ class MilkyBot:
     
     async def _dispatch(self, event: dict) -> None:
         """分发事件到处理器"""
+        event_model = None
         event_type = event.get("event_type")
+        
+        # Parse to model
+        try:
+            if event_type == EventType.MESSAGE_RECEIVE:
+                event_model = MessageEvent.model_validate(event)
+            else:
+                event_model = MilkyEvent.model_validate(event)
+        except Exception:
+            logger.warning(f"Failed to parse event: {event}")
+            return
+            
         handlers = self._handlers.get(event_type, [])
         
         for handler in handlers:
             try:
-                await handler(event)
+                await handler(event_model)
             except Exception as e:
                 logger.exception(f"Handler error: {e}")
     
