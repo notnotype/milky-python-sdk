@@ -41,7 +41,7 @@ class MilkyBot:
         async def reply(event):
             await bot.reply(event, "你好!")
         
-        bot.run()
+        bot.startup()
     """
     
     def __init__(
@@ -274,7 +274,7 @@ class MilkyBot:
             except Exception as e:
                 logger.exception(f"Handler error: {e}")
     
-    async def _run_async(self) -> None:
+    async def run(self) -> None:
         """异步运行主循环"""
         # 获取 bot 信息
         try:
@@ -298,7 +298,7 @@ class MilkyBot:
             await self.client.close()
             logger.info("Bot stopped")
     
-    def run(self) -> None:
+    def startup(self) -> None:
         """
         启动 bot
         
@@ -310,7 +310,7 @@ class MilkyBot:
         )
         
         try:
-            asyncio.run(self._run_async())
+            asyncio.run(self.run())
         except KeyboardInterrupt:
-            pass  # 已在 _run_async 中处理
+            pass
 

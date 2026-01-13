@@ -35,7 +35,7 @@ async def echo_command(event, args):
         await bot.reply(event, args, at_sender=False)
 
 if __name__ == "__main__":
-    bot.run()
+    bot.startup()
 ```
 
 ### Using Async Client

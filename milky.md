@@ -29,7 +29,7 @@ async def handle(event):
 async def help_cmd(event, args):
     await bot.reply(event, "帮助信息")
 
-bot.run()
+bot.startup()
 ```
 
 ### 方式二：异步客户端
@@ -171,5 +171,5 @@ async def log_group(event):
     data = event["data"]
     print(f"群 {data['peer_id']}: {data['segments']}")
 
-bot.run()
+bot.startup()
 ```
