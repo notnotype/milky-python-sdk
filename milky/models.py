@@ -701,6 +701,16 @@ class MessageEvent(MilkyEvent):
     data: IncomingMessage
 
 
+    def to_text(self, add_sender: bool = False) -> str:
+        """
+        将消息转换为字符串表示
+
+        Args:
+            add_sender: 是否附加发送者信息 (e.g., "Nickname: Message")
+        """
+        return message2text(self, add_sender)
+
+
 class NoticeEvent(MilkyEvent):
     """通知事件 (通用)"""
     pass
@@ -709,4 +719,72 @@ class NoticeEvent(MilkyEvent):
 class RequestEvent(MilkyEvent):
     """请求事件 (通用)"""
     pass
+
+
+def message2text(
+    msg_obj: Union[MilkyEvent, IncomingMessage, list[Union[IncomingSegment, OutgoingSegment]], IncomingSegment, OutgoingSegment, Any],
+    add_sender: bool = False
+) -> str:
+    """
+    通用方法：将消息对象转化为文本字符串
+    
+    支持: 
+    - MessageEvent
+    - IncomingMessage (FriendMessage, GroupMessage, etc)
+    - list[Segment] (Incoming or Outgoing)
+    - Single Segment (Incoming or Outgoing)
+    """
+    parts = []
+    
+    # 1. Handle MessageEvent
+    if isinstance(msg_obj, MessageEvent):
+        msg = msg_obj.data
+        if add_sender:
+            name = str(msg.sender_id)
+            if hasattr(msg, "group_member") and msg.group_member:
+                name = msg.group_member.card or msg.group_member.nickname
+            elif hasattr(msg, "friend") and msg.friend:
+                name = msg.friend.remark or msg.friend.nickname
+            parts.append(f"[{name}]: ")
+        parts.append(message2text(msg.segments))
+        return "".join(parts)
+
+    # 2. Handle IncomingMessage
+    if hasattr(msg_obj, "segments") and isinstance(msg_obj.segments, list):
+         # It's likely a message object (IncomingMessage or OutgoingForwardedMessage)
+         return message2text(msg_obj.segments)
+
+    # 3. Handle List of Segments
+    if isinstance(msg_obj, list):
+        return "".join(message2text(seg) for seg in msg_obj)
+
+    # 4. Handle Single Segment (BaseModel with type and data)
+    if hasattr(msg_obj, "type") and hasattr(msg_obj, "data"):
+        seg_type = msg_obj.type
+        data = msg_obj.data
+        
+        if seg_type == "text":
+            return data.text
+        elif seg_type == "mention":
+            return f"[at:{data.user_id}]"
+        elif seg_type == "mention_all":
+            return "[at:all]"
+        elif seg_type == "face":
+            return f"[face:{data.face_id}]"
+        elif seg_type == "image":
+            return "[image]"
+        elif seg_type == "record":
+            return "[record]"
+        elif seg_type == "video":
+            return "[video]"
+        elif seg_type == "file":
+             return f"[file:{getattr(data, 'file_name', 'unknown')}]"
+        elif seg_type == "reply":
+             return f"[reply:{getattr(data, 'message_seq', 0)}]"
+        elif seg_type == "forward":
+             return "[forward]"
+        else:
+             return f"[{seg_type}]"
+             
+    return str(msg_obj)
 
