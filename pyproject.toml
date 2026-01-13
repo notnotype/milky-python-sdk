@@ -7,9 +7,9 @@ requires-python = ">=3.11"
 authors = [
     {name = "notnotype"}
 ]
-dependencies = [
     "httpx",
-    "pydantic"
+    "pydantic",
+    "python-dotenv"
 ]
 classifiers = [
     "Programming Language :: Python :: 3",

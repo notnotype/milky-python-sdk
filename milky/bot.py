@@ -4,8 +4,14 @@ from __future__ import annotations
 
 import asyncio
 import logging
+import os
 from enum import Enum
 from typing import Any, Callable, Coroutine, Optional, TypeVar
+
+try:
+    from dotenv import load_dotenv
+except ImportError:
+    def load_dotenv(): pass
 
 from milky.async_client import AsyncMilkyClient, MilkyError, MilkyHttpError
 from milky.models import (
@@ -31,6 +37,10 @@ class MilkyBot:
     提供装饰器风格的事件注册系统。
     
     Example:
+        # 自动读取环境变量 MILKY_URL / MILKY_TOKEN
+        bot = MilkyBot() 
+        
+        # 或者手动指定
         bot = MilkyBot("http://localhost:3010", "token")
         
         @bot.on_message()
@@ -46,11 +56,19 @@ class MilkyBot:
     
     def __init__(
         self,
-        base_url: str,
+        base_url: Optional[str] = None,
         access_token: Optional[str] = None,
         timeout: float = 30.0,
     ):
-        self.client = AsyncMilkyClient(base_url, access_token, timeout)
+        load_dotenv()
+        
+        self.base_url = base_url or os.getenv("MILKY_URL")
+        self.access_token = access_token or os.getenv("MILKY_TOKEN")
+        
+        if not self.base_url:
+            raise ValueError("base_url is required. Set it via arg or MILKY_URL env var.")
+            
+        self.client = AsyncMilkyClient(self.base_url, self.access_token, timeout)
         self._handlers: dict[str, list[Callable]] = {}
         self._bot_id: Optional[int] = None
     
@@ -277,26 +295,14 @@ class MilkyBot:
     async def run(self) -> None:
         """异步运行主循环"""
         # 获取 bot 信息
-        try:
-            info = await self.client.get_login_info()
-            self._bot_id = info.uin
-            logger.info(f"Bot logged in: {info.nickname} ({info.uin})")
-        except (MilkyError, MilkyHttpError) as e:
-            logger.error(f"Login failed: {e}")
-            return
+        info = await self.client.get_login_info()
+        self._bot_id = info.uin
+        logger.info(f"Bot logged in: {info.nickname} ({info.uin})")
         
         logger.info("Starting event loop...")
         
-        try:
-            async for event in self.client.events_sse():
-                await self._dispatch(event)
-        except asyncio.CancelledError:
-            logger.info("Event loop cancelled")
-        except (MilkyError, MilkyHttpError) as e:
-            logger.error(f"Event stream error: {e}")
-        finally:
-            await self.client.close()
-            logger.info("Bot stopped")
+        async for event in self.client.events_sse():
+            await self._dispatch(event)
     
     def startup(self) -> None:
         """
@@ -309,8 +315,25 @@ class MilkyBot:
             format="%(asctime)s [%(levelname)s] %(message)s",
         )
         
+        async def _main():
+            try:
+                await self.run()
+            except asyncio.CancelledError:
+                logger.info("Event loop cancelled")
+            except (MilkyError, MilkyHttpError) as e:
+                logger.error(f"Bot error: {e}")
+            except Exception as e:
+                logger.exception(f"Unexpected error: {e}")
+            finally:
+                await self.client.close()
+                logger.info("Bot stopped")
+
         try:
-            asyncio.run(self.run())
+            asyncio.run(_main())
         except KeyboardInterrupt:
+            # _main's finally block will still run if asyncio.run handles the signal gracefully,
+            # but usually for KeyboardInterrupt we rely on asyncio.run to cancel tasks.
+            # In Python 3.11+ asyncio.run handles signals better.
+            # We can rely on _main finally block for cleanup.
             pass
 
