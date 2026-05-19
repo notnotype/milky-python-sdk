@@ -14,6 +14,13 @@ from milky.models import (
     FriendEntity,
     GroupEntity,
     GroupMemberEntity,
+    # Group Notifications
+    GroupNotification,
+    GroupAdminChangeNotification,
+    GroupInvitedJoinRequestNotification,
+    GroupJoinRequestNotification,
+    GroupMemberKickNotification,
+    GroupMemberQuitNotification,
     # Incoming Segments
     TextSegment,
     MentionSegment,
@@ -58,6 +65,13 @@ __all__ = [
     "FriendEntity",
     "GroupEntity",
     "GroupMemberEntity",
+    # Group Notifications
+    "GroupNotification",
+    "GroupAdminChangeNotification",
+    "GroupInvitedJoinRequestNotification",
+    "GroupJoinRequestNotification",
+    "GroupMemberKickNotification",
+    "GroupMemberQuitNotification",
     # Incoming Segments
     "TextSegment",
     "MentionSegment",
@@ -86,4 +100,4 @@ __all__ = [
     "TempMessage",
 ]
 
-__version__ = "0.2.0"
+__version__ = "0.4.2"

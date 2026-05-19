@@ -18,6 +18,7 @@ from milky.models import (
     GroupFileEntity,
     GroupFolderEntity,
     GroupMemberEntity,
+    GroupNotification,
     ImplInfo,
     IncomingForwardedMessage,
     IncomingMessage,
@@ -29,6 +30,7 @@ from milky.models import (
     SendMessageResult,
     UploadFileResult,
     UserProfile,
+    parse_group_notification,
     parse_incoming_message,
 )
 
@@ -517,13 +519,13 @@ class MilkyClient:
         start_notification_seq: Optional[int] = None,
         is_filtered: bool = False,
         limit: int = 20,
-    ) -> tuple[list[dict], Optional[int]]:
+    ) -> tuple[list[GroupNotification], Optional[int]]:
         """获取群通知列表"""
         params: dict = {"is_filtered": is_filtered, "limit": limit}
         if start_notification_seq is not None:
             params["start_notification_seq"] = start_notification_seq
         data = self._request("get_group_notifications", params)
-        return data.get("notifications", []), data.get("next_notification_seq")
+        return [parse_group_notification(n) for n in data.get("notifications", [])], data.get("next_notification_seq")
 
     def accept_group_request(
         self,

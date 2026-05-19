@@ -592,6 +592,85 @@ def parse_incoming_message(data: Any) -> IncomingMessage:
 
 
 # ============================================================================
+# Group Notifications (群通知)
+# ============================================================================
+
+
+class GroupJoinRequestNotification(BaseModel):
+    """用户入群请求"""
+
+    type: Literal["join_request"] = "join_request"
+    group_id: int = Field(description="群号")
+    notification_seq: int = Field(description="通知序列号")
+    is_filtered: bool = Field(description="请求是否被过滤（发起自风险账户）")
+    initiator_id: int = Field(description="发起者 QQ 号")
+    state: RequestState = Field(description="请求状态")
+    comment: str = Field(description="入群请求附加信息")
+    operator_id: Optional[int] = Field(default=None, description="处理请求的管理员 QQ 号")
+
+
+class GroupAdminChangeNotification(BaseModel):
+    """群管理员变更通知"""
+
+    type: Literal["admin_change"] = "admin_change"
+    group_id: int = Field(description="群号")
+    notification_seq: int = Field(description="通知序列号")
+    target_user_id: int = Field(description="被设置/取消用户 QQ 号")
+    is_set: bool = Field(description="是否被设置为管理员")
+    operator_id: int = Field(description="操作者（群主）QQ 号")
+
+
+class GroupMemberKickNotification(BaseModel):
+    """群成员被移除通知"""
+
+    type: Literal["kick"] = "kick"
+    group_id: int = Field(description="群号")
+    notification_seq: int = Field(description="通知序列号")
+    target_user_id: int = Field(description="被移除用户 QQ 号")
+    operator_id: int = Field(description="移除用户的管理员 QQ 号")
+
+
+class GroupMemberQuitNotification(BaseModel):
+    """群成员退群通知"""
+
+    type: Literal["quit"] = "quit"
+    group_id: int = Field(description="群号")
+    notification_seq: int = Field(description="通知序列号")
+    target_user_id: int = Field(description="退群用户 QQ 号")
+
+
+class GroupInvitedJoinRequestNotification(BaseModel):
+    """群成员邀请他人入群请求"""
+
+    type: Literal["invited_join_request"] = "invited_join_request"
+    group_id: int = Field(description="群号")
+    notification_seq: int = Field(description="通知序列号")
+    initiator_id: int = Field(description="邀请者 QQ 号")
+    target_user_id: int = Field(description="被邀请用户 QQ 号")
+    state: RequestState = Field(description="请求状态")
+    operator_id: Optional[int] = Field(default=None, description="处理请求的管理员 QQ 号")
+
+
+GroupNotification = Annotated[
+    Union[
+        GroupJoinRequestNotification,
+        GroupAdminChangeNotification,
+        GroupMemberKickNotification,
+        GroupMemberQuitNotification,
+        GroupInvitedJoinRequestNotification,
+    ],
+    Field(discriminator="type"),
+]
+
+_GroupNotificationAdapter = TypeAdapter(GroupNotification)
+
+
+def parse_group_notification(data: Any) -> GroupNotification:
+    """Validate raw API notification payload into the concrete group notification model."""
+    return _GroupNotificationAdapter.validate_python(data)
+
+
+# ============================================================================
 # Forwarded Messages
 # ============================================================================
 

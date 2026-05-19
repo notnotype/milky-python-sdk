@@ -18,6 +18,7 @@ from milky.models import (
     GroupFileEntity,
     GroupFolderEntity,
     GroupMemberEntity,
+    GroupNotification,
     ImplInfo,
     IncomingForwardedMessage,
     IncomingMessage,
@@ -29,6 +30,7 @@ from milky.models import (
     SendMessageResult,
     UploadFileResult,
     UserProfile,
+    parse_group_notification,
     parse_incoming_message,
 )
 
@@ -312,12 +314,12 @@ class AsyncMilkyClient:
     async def send_group_nudge(self, group_id: int, user_id: int) -> None:
         await self._request("send_group_nudge", {"group_id": group_id, "user_id": user_id})
 
-    async def get_group_notifications(self, start_notification_seq: Optional[int] = None, is_filtered: bool = False, limit: int = 20) -> tuple[list[dict], Optional[int]]:
+    async def get_group_notifications(self, start_notification_seq: Optional[int] = None, is_filtered: bool = False, limit: int = 20) -> tuple[list[GroupNotification], Optional[int]]:
         params: dict = {"is_filtered": is_filtered, "limit": limit}
         if start_notification_seq is not None:
             params["start_notification_seq"] = start_notification_seq
         data = await self._request("get_group_notifications", params)
-        return data.get("notifications", []), data.get("next_notification_seq")
+        return [parse_group_notification(n) for n in data.get("notifications", [])], data.get("next_notification_seq")
 
     async def accept_group_request(self, notification_seq: int, notification_type: NotificationType, group_id: int, is_filtered: bool = False) -> None:
         await self._request("accept_group_request", {"notification_seq": notification_seq, "notification_type": notification_type.value, "group_id": group_id, "is_filtered": is_filtered})
