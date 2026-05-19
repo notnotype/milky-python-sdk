@@ -11,6 +11,7 @@ from milky.models import (
     CreateFolderResult,
     FileDownloadUrl,
     FriendEntity,
+    FriendMessage,
     FriendRequest,
     GroupAnnouncementEntity,
     GroupEntity,
@@ -18,6 +19,7 @@ from milky.models import (
     GroupFileEntity,
     GroupFolderEntity,
     GroupMemberEntity,
+    GroupMessage,
     ImplInfo,
     IncomingForwardedMessage,
     IncomingMessage,
@@ -27,6 +29,7 @@ from milky.models import (
     OutgoingSegment,
     ResourceTempUrl,
     SendMessageResult,
+    TempMessage,
     UploadFileResult,
     UserProfile,
 )
@@ -218,7 +221,20 @@ class AsyncMilkyClient:
         if start_message_seq is not None:
             params["start_message_seq"] = start_message_seq
         data = await self._request("get_history_messages", params)
-        return data.get("messages", []), data.get("next_message_seq")
+
+        messages: list[IncomingMessage] = []
+        for m in data.get("messages", []) or []:
+            scene = m.get("message_scene")
+            if scene == "friend":
+                messages.append(FriendMessage(**m))
+            elif scene == "group":
+                messages.append(GroupMessage(**m))
+            elif scene == "temp":
+                messages.append(TempMessage(**m))
+            else:
+                raise MilkyError(-1, f"Unknown message_scene in get_history_messages: {scene}")
+
+        return messages, data.get("next_message_seq")
 
     async def get_resource_temp_url(self, resource_id: str) -> ResourceTempUrl:
         data = await self._request("get_resource_temp_url", {"resource_id": resource_id})
