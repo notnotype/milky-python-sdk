@@ -11,7 +11,6 @@ from milky.models import (
     CreateFolderResult,
     FileDownloadUrl,
     FriendEntity,
-    FriendMessage,
     FriendRequest,
     GroupAnnouncementEntity,
     GroupEntity,
@@ -19,7 +18,6 @@ from milky.models import (
     GroupFileEntity,
     GroupFolderEntity,
     GroupMemberEntity,
-    GroupMessage,
     ImplInfo,
     IncomingForwardedMessage,
     IncomingMessage,
@@ -29,9 +27,9 @@ from milky.models import (
     OutgoingSegment,
     ResourceTempUrl,
     SendMessageResult,
-    TempMessage,
     UploadFileResult,
     UserProfile,
+    parse_incoming_message,
 )
 
 
@@ -214,27 +212,14 @@ class AsyncMilkyClient:
 
     async def get_message(self, message_scene: MessageScene, peer_id: int, message_seq: int) -> IncomingMessage:
         data = await self._request("get_message", {"message_scene": message_scene.value, "peer_id": peer_id, "message_seq": message_seq})
-        return data.get("message", {})
+        return parse_incoming_message(data.get("message", {}))
 
     async def get_history_messages(self, message_scene: MessageScene, peer_id: int, start_message_seq: Optional[int] = None, limit: int = 20) -> tuple[list[IncomingMessage], Optional[int]]:
         params: dict = {"message_scene": message_scene.value, "peer_id": peer_id, "limit": limit}
         if start_message_seq is not None:
             params["start_message_seq"] = start_message_seq
         data = await self._request("get_history_messages", params)
-
-        messages: list[IncomingMessage] = []
-        for m in data.get("messages", []) or []:
-            scene = m.get("message_scene")
-            if scene == "friend":
-                messages.append(FriendMessage(**m))
-            elif scene == "group":
-                messages.append(GroupMessage(**m))
-            elif scene == "temp":
-                messages.append(TempMessage(**m))
-            else:
-                raise MilkyError(-1, f"Unknown message_scene in get_history_messages: {scene}")
-
-        return messages, data.get("next_message_seq")
+        return [parse_incoming_message(m) for m in data.get("messages", [])], data.get("next_message_seq")
 
     async def get_resource_temp_url(self, resource_id: str) -> ResourceTempUrl:
         data = await self._request("get_resource_temp_url", {"resource_id": resource_id})

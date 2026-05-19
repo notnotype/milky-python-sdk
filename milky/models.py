@@ -5,7 +5,7 @@ from __future__ import annotations
 from enum import Enum
 from typing import Annotated, Any, Literal, Optional, Union
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, TypeAdapter
 
 
 # ============================================================================
@@ -582,6 +582,13 @@ IncomingMessage = Annotated[
     Union[FriendMessage, GroupMessage, TempMessage],
     Field(discriminator="message_scene"),
 ]
+
+_IncomingMessageAdapter = TypeAdapter(IncomingMessage)
+
+
+def parse_incoming_message(data: Any) -> IncomingMessage:
+    """Validate raw API message payload into the concrete incoming message model."""
+    return _IncomingMessageAdapter.validate_python(data)
 
 
 # ============================================================================

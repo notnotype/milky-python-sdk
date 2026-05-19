@@ -29,6 +29,7 @@ from milky.models import (
     SendMessageResult,
     UploadFileResult,
     UserProfile,
+    parse_incoming_message,
 )
 
 
@@ -327,7 +328,7 @@ class MilkyClient:
             "get_message",
             {"message_scene": message_scene.value, "peer_id": peer_id, "message_seq": message_seq},
         )
-        return data.get("message", {})
+        return parse_incoming_message(data.get("message", {}))
 
     def get_history_messages(
         self,
@@ -341,7 +342,7 @@ class MilkyClient:
         if start_message_seq is not None:
             params["start_message_seq"] = start_message_seq
         data = self._request("get_history_messages", params)
-        return data.get("messages", []), data.get("next_message_seq")
+        return [parse_incoming_message(m) for m in data.get("messages", [])], data.get("next_message_seq")
 
     def get_resource_temp_url(self, resource_id: str) -> ResourceTempUrl:
         """获取临时资源链接"""
